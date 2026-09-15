@@ -46,7 +46,7 @@
         </div>
     </div>
 
-    <!-- FILE REDIRECT SCREEN (2 Selected Ads load ONLY here) -->
+    <!-- FILE REDIRECT SCREEN -->
     <div id="filePage">
         <div class="app-title">🪀⸸ M͛K͛﹏C͛O͛N͛V͛E͛R͛T͛E͛R͛ ⸸©️</div>
         <pre class="logo">🇧🇱 ⸸ M͛K͛﹏C͛O͛N͛V͛E͛R͛T͛E͛R͛ ⸸🇧🇱</pre>
@@ -88,7 +88,7 @@ function convertLink(){
     let moneyLink = window.location.origin + window.location.pathname + '?file=' + encoded;
     let resDiv = document.getElementById('result');
     resDiv.style.display = 'block';
-    resDiv.innerHTML = '<p>✅ Money Link:</p><a href="' + moneyLink + '" target="_blank">' + moneyLink + '</a><br><br><button onclick="navigator.clipboard.writeText(\'' + moneyLink + \'\');alert(\'Copied!\')" style="color:#000;">COPY LINK</button>';
+    resDiv.innerHTML = '<p>✅ Money Link:</p><a href="' + moneyLink + '" target="_blank">' + moneyLink + '</a><br><br><button onclick="navigator.clipboard.writeText(\'' + moneyLink + '\');alert(\'Copied!\')" style="color:#000;">COPY LINK</button>';
 }
 
 window.onload = function(){
@@ -97,34 +97,47 @@ window.onload = function(){
         try{
             finalFile = atob(params.get('file'));
             
-            // Switch views to the file waiting page
             document.getElementById('authPage').style.display='none';
             document.getElementById('converterPage').style.display='none';
             document.getElementById('filePage').style.display='block';
             
-            // DYNAMICALLY load Ad Script 1 (Zone 11793384)
+            // Load Ad 1
             let ad1 = document.createElement('script');
             ad1.src = "https://5gvci.com/act/files/tag.min.js?z=11793384";
             ad1.setAttribute("data-cfasync", "false");
             ad1.async = true;
             document.body.appendChild(ad1);
 
-            // DYNAMICALLY load Ad Script 2 (Zone 11793385 Vignette)
+            // Load Ad 2
             let ad2 = document.createElement('script');
             ad2.dataset.zone = '11793385';
             ad2.src = 'https://n6wxm.com/vignette.min.js';
             document.body.appendChild(ad2);
 
-            // Countdown logic
-            let c=5;
-            let timer = setInterval(()=>{
+            let c = 5;
+            let timer = setInterval(() => {
                 c--;
-                document.getElementById('count').innerText=c;
-                if(c==0){
+                document.getElementById('count').innerText = c;
+                if(c == 0){
                     clearInterval(timer);
-                    document.getElementById('count').style.display='none';
-                    document.getElementById('goBtn').style.display='inline-block';
-                    document.getElementById('adText').innerText="Click CONTINUE to get file";
+                    document.getElementById('count').style.display = 'none';
+                    document.getElementById('goBtn').style.display = 'inline-block';
+                    document.getElementById('adText').innerText = "Click CONTINUE to get file";
+                }
+            }, 1000);
+        }catch(e){}
+    }
+}
+
+function goToFile(){
+    window.location.href = finalFile;
+}
+</script>
+
+</body>
+</html>
+
+ CONTINUE to get file";
                 }
             },1000);
         }catch(e){}
