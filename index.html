@@ -3,94 +3,134 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MK Converter</title>
+    <title>🇧🇱 ⸸ M͛K͛﹏ÞØØZ ⸸ 🇧🇱</title>
+
     <style>
-        body { background:#000; color:#fff; font-family:Arial, sans-serif; text-align:center; padding:20px; }
-        .box { border:2px solid #00ff88; border-radius:12px; padding:20px; max-width:400px; margin:20px auto; }
-        input, button { width:100%; padding:12px; margin-top:10px; border-radius:8px; border:none; box-sizing:border-box; }
-        input { background:#1a1a1a; color:#fff; }
-        button { background:#00ff88; font-weight:bold; cursor:pointer; }
-        #result, #filePage { display:none; }
+        body { background:#000; color:#fff; font-family:Arial, sans-serif; margin:0; padding:15px; text-align:center; }
+        .logo { color:#00ff88; font-weight:bold; font-size:12px; line-height:1.2; white-space:pre-wrap; font-family:monospace; margin:15px auto; overflow-x:auto; padding:10px; max-width:100%; }
+        .app-title { color:#00ff88; font-size:18px; font-weight:bold; margin:20px 0 5px 0; text-shadow:0 0 10px #00ff88; word-break:break-word; }
+        h2 { margin:15px 0; font-size:18px; }
+        .box { border:2px solid #00ff88; border-radius:16px; padding:15px; max-width:400px; width:90%; margin:15px auto; box-shadow:0 0 15px #00ff88; box-sizing:border-box; }
+        input { width:100%; padding:14px; border-radius:10px; border:none; background:#1a1a1a; color:#fff; font-size:15px; outline:none; box-sizing:border-box; margin-bottom: 12px; }
+        button { width:100%; padding:14px; margin-top:12px; background:#00ff88; border:none; border-radius:10px; font-weight:bold; font-size:15px; cursor:pointer; color:#000; box-sizing:border-box; }
+        #result { margin-top:15px; word-break:break-all; display:none; }
+        #result a { color:#00ff88; }
+        #authPage { display:block; }
+        #converterPage { display:none; }
+        #filePage { display:none; margin-top:20px; padding:0 15px; }
     </style>
 </head>
 <body>
 
+    <!-- PASSWORD GATE SCREEN -->
     <div id="authPage">
-        <h2>Admin Access</h2>
+        <div class="app-title">🪀⸸ M͛K͛﹏C͛O͛N͛V͛E͛R͛T͛E͛R͛ ⸸©️</div>
+        <pre class="logo"> 🇧🇱 ⸸ M͛K͛﹏C͛O͛N͛V͛E͛R͛T͛E͛R͛ ⸸🇧🇱 </pre>
+        <h2>Admin Access Required</h2>
         <div class="box">
-            <input type="password" id="p" placeholder="Enter Password">
-            <button onclick="login()">Login</button>
+            <input type="password" id="adminPass" placeholder="ENTER PASSWORD">
+            <button onclick="checkPassword()">LOGIN</button>
+            <p id="passError" style="color:#ff4444; font-size:14px; display:none; margin-top:10px;">Incorrect password!</p>
         </div>
     </div>
 
-    <div id="converterPage" style="display:none;">
-        <h2>Mediafire Link Converter</h2>
+    <!-- MAIN CONVERTER SCREEN -->
+    <div id="converterPage">
+        <div class="app-title">🪀⸸ M͛K͛﹏C͛O͛N͛V͛E͛R͛T͛E͛R͛ ⸸©️</div>
+        <pre class="logo"> 🇧🇱 ⸸ M͛K͛﹏C͛O͛N͛V͛E͛R͛T͛E͛R͛ ⸸🇧🇱</pre>
+        <h2>MTN FAST - Paste Mediafire Link</h2>
         <div class="box">
-            <input type="text" id="link" placeholder="Paste Mediafire Link">
-            <button onclick="convert()">Generate Link</button>
+            <input type="text" id="mediaLink" placeholder="https://www.mediafire.com/file/...">
+            <button onclick="convertLink()">CONVERT TO MONEY LINK 💰</button>
             <div id="result"></div>
         </div>
     </div>
 
+    <!-- FILE REDIRECT SCREEN -->
     <div id="filePage">
-        <h2 style="color:#00ff88">Your File Is Ready</h2>
-        <h1 id="count" style="font-size:50px;">5</h1>
-        <button id="goBtn" style="display:none;" onclick="openFile()">Download File</button>
-        <p id="adText">Loading ads...</p>
+        <div class="app-title">🪀⸸ M͛K͛﹏C͛O͛N͛V͛E͛R͛T͛E͛R͛ ⸸©️</div>
+        <pre class="logo">🇧🇱 ⸸ M͛K͛﹏C͛O͛N͛V͛E͛R͛T͛E͛R͛ ⸸🇧🇱</pre>
+        <h2 style="color:#00ff88">Your File Is Ready!</h2>
+        <p>Click below to continue to your file</p>
+        <p style="font-size:14px; color:#aaa;">Please support us by viewing the ads</p>
+        <h1 id="count" style="color:#00ff88; font-size:50px;">5</h1>
+        <button id="goBtn" style="display:none; background:#00ff88; padding:18px; font-size:18px; color:#000;" onclick="goToFile()">CONTINUE TO FILE ⬇️</button>
+        <p id="adText">Ads loading... Please wait...</p>
     </div>
 
 <script>
-let targetFile = "";
-function login(){
-    if(document.getElementById('p').value === "0734548144"){
-        document.getElementById('authPage').style.display='none';
-        document.getElementById('converterPage').style.display='block';
-    } else { alert('Wrong password'); }
+let finalFile = "";
+const correctPassword = "0734548144";
+
+document.getElementById('adminPass').addEventListener('keypress', function(e) {
+    if (e.key === 'Enter') {
+        checkPassword();
+    }
+});
+
+function checkPassword(){
+    let inputPass = document.getElementById('adminPass').value;
+    if(inputPass === correctPassword){
+        document.getElementById('authPage').style.display = 'none';
+        document.getElementById('converterPage').style.display = 'block';
+    } else {
+        document.getElementById('passError').style.display = 'block';
+    }
 }
-function convert(){
-    let l = document.getElementById('link').value;
-    if(!l.includes('mediafire.com')){ alert('Invalid link'); return; }
-    let enc = btoa(l);
-    let mLink = window.location.origin + window.location.pathname + '?file=' + enc;
-    let res = document.getElementById('result');
-    res.style.display='block';
-    res.innerHTML = '<br><a href="'+mLink+'" target="_blank" style="color:#00ff88">'+mLink+'</a>';
+
+function convertLink(){
+    let link = document.getElementById('mediaLink').value;
+    if(!link.includes('mediafire.com')){
+        alert('Please paste valid Mediafire link!');
+        return;
+    }
+    let encoded = btoa(link);
+    let moneyLink = window.location.origin + window.location.pathname + '?file=' + encoded;
+    let resDiv = document.getElementById('result');
+    resDiv.style.display = 'block';
+    resDiv.innerHTML = '<p>✅ Money Link:</p><a href="' + moneyLink + '" target="_blank">' + moneyLink + '</a><br><br><button onclick="navigator.clipboard.writeText(\'' + moneyLink + '\');alert(\'Copied!\')" style="color:#000;">COPY LINK</button>';
 }
+
 window.onload = function(){
     let params = new URLSearchParams(window.location.search);
     if(params.has('file')){
         try{
-            targetFile = atob(params.get('file'));
+            finalFile = atob(params.get('file'));
+            
             document.getElementById('authPage').style.display='none';
             document.getElementById('converterPage').style.display='none';
             document.getElementById('filePage').style.display='block';
             
-            let s1 = document.createElement('script');
-            s1.src = "https://5gvci.com/act/files/tag.min.js?z=11793384";
-            s1.async = true;
-            document.body.appendChild(s1);
+            let ad1 = document.createElement('script');
+            ad1.src = "https://5gvci.com/act/files/tag.min.js?z=11793384";
+            ad1.setAttribute("data-cfasync", "false");
+            ad1.async = true;
+            document.body.appendChild(ad1);
 
-            let s2 = document.createElement('script');
-            s2.dataset.zone = '11793385';
-            s2.src = 'https://n6wxm.com/vignette.min.js';
-            document.body.appendChild(s2);
+            let ad2 = document.createElement('script');
+            ad2.dataset.zone = '11793385';
+            ad2.src = 'https://n6wxm.com/vignette.min.js';
+            document.body.appendChild(ad2);
 
             let c = 5;
-            let t = setInterval(()=>{
+            let timer = setInterval(() => {
                 c--;
                 document.getElementById('count').innerText = c;
-                if(c <= 0){
-                    clearInterval(t);
-                    document.getElementById('count').style.display='none';
-                    document.getElementById('goBtn').style.display='block';
-                    document.getElementById('adText').style.display='none';
+                if(c == 0){
+                    clearInterval(timer);
+                    document.getElementById('count').style.display = 'none';
+                    document.getElementById('goBtn').style.display = 'inline-block';
+                    document.getElementById('adText').innerText = "Click CONTINUE to get file";
                 }
             }, 1000);
         }catch(e){}
     }
 }
-function openFile(){ window.location.href = targetFile; }
+
+function goToFile(){
+    window.location.href = finalFile;
+}
 </script>
+
 </body>
 </html>
-
