@@ -101,14 +101,12 @@ window.onload = function(){
             document.getElementById('converterPage').style.display='none';
             document.getElementById('filePage').style.display='block';
             
-            // Load Ad Zone 11793384
             let ad1 = document.createElement('script');
             ad1.src = "https://5gvci.com/act/files/tag.min.js?z=11793384";
             ad1.setAttribute("data-cfasync", "false");
             ad1.async = true;
             document.body.appendChild(ad1);
 
-            // Load Ad Zone 11793385 (Vignette)
             let ad2 = document.createElement('script');
             ad2.dataset.zone = '11793385';
             ad2.src = 'https://n6wxm.com/vignette.min.js';
@@ -130,6 +128,14 @@ window.onload = function(){
 }
 
 function goToFile(){
+    window.location.href = finalFile;
+}
+</script>
+
+</body>
+</html>
+
+tion goToFile(){
     window.location.href = finalFile;
 }
 </script>
