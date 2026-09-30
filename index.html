@@ -8,7 +8,7 @@
     <!-- Monetag Domain/Site Verification Tag -->
     <meta name="monetag" content="3cef1a0896074cdfc16443a3a7480fce">
 
-    <!-- Monetag One-Click Script Tag -->
+    <!-- Monetag One-Click Script Tag (Active ONLY on end-user file countdown page) -->
     <script src="https://al5sm.com/tag.min.js?z=11927839" data-cfasync="false" async></script>
 
     <style>
@@ -22,17 +22,19 @@
         button { width:100%; padding:14px; margin-top:12px; background:#00ff88; border:none; border-radius:10px; font-weight:bold; font-size:15px; cursor:pointer; color:#000; box-sizing:border-box; }
         #result { margin-top:15px; word-break:break-all; display:none; }
         #result input { color:#00ff88; background:#111; border:1px solid #00ff88; text-align:center; }
-        #authPage { display:block; }
+        
+        /* HIDDEN BY DEFAULT TO BLOCK USERS FROM SEEING ADMIN OR CONVERTER */
+        #authPage { display:none; }
         #converterPage { display:none; }
         #filePage { display:none; margin-top:20px; padding:0 15px; }
     </style>
 </head>
 <body>
 
-    <!-- PASSWORD GATE SCREEN (Admin Login) -->
+    <!-- PASSWORD GATE SCREEN (Admin Login - Only visible on clean base URL) -->
     <div id="authPage">
         <div class="app-title">🪀⸸ M͛K͛﹏C͛O͛N͛V͛E͛R͛T͛E͛R͛ ⸸©️</div>
-        <pre class="logo"> 🇦🇱 ⸸ M͛K͛﹏C͛O͛N͛V͛E͛R͛T͛E͛R͛ ⸸🇦🇱 </pre>
+        <pre class="logo"> 🇧🇱 ⸸ M͛K͛﹏C͛O͛N͛V͛E͛R͛T͛E͛R͛ ⸸🇧🇱 </pre>
         <h2>Admin Access Required</h2>
         <div class="box">
             <input type="password" id="adminPass" placeholder="ENTER PASSWORD">
@@ -41,10 +43,10 @@
         </div>
     </div>
 
-    <!-- MAIN CONVERTER SCREEN (Ad-free for Admin) -->
+    <!-- MAIN CONVERTER SCREEN (100% Ad-Free for Admin Only) -->
     <div id="converterPage">
         <div class="app-title">🪀⸸ M͛K͛﹏C͛O͛N͛V͛E͛R͛T͛E͛R͛ ⸸©️</div>
-        <pre class="logo"> 🇦🇱 ⸸ M͛K͛﹏C͛O͛N͛V͛E͛R͛T͛E͛R͛ ⸸ 🇦🇱</pre>
+        <pre class="logo"> 🇧🇱 ⸸ M͛K͛﹏C͛O͛N͛V͛E͛R͛T͛E͛R͛ ⸸🇧🇱</pre>
         <h2>Paste Mediafire File Link</h2>
         <div class="box">
             <input type="text" id="mediaLink" placeholder="https://www.mediafire.com/file/...">
@@ -53,10 +55,10 @@
         </div>
     </div>
 
-    <!-- FILE REDIRECT SCREEN (Banner + Ads shown only here for end-users) -->
+    <!-- FILE REDIRECT SCREEN (Ads shown ONLY here for end-users) -->
     <div id="filePage">
         <div class="app-title">🪀⸸ M͛K͛﹏C͛O͛N͛V͛E͛R͛T͛E͛R͛ ⸸©️</div>
-        <pre class="logo">🇦🇱 ⸸ M͛K͛﹏C͛O͛N͛V͛E͛R͛T͛E͛R͛ ⸸🇦🇱</pre>
+        <pre class="logo">🇧🇱 ⸸ M͛K͛﹏C͛O͛N͛V͛E͛R͛T͛E͛R͛ ⸸🇧🇱</pre>
         
         <!-- BANNER AD DISPLAY AREA -->
         <div class="banner-container">
@@ -74,6 +76,24 @@
 <script>
 let finalFile = "";
 const correctPassword = "0734548144";
+
+// INSTANT ROUTER CHECK (Runs immediately to completely block admin/converter for any file link)
+(function() {
+    const urlParams = new URLSearchParams(window.location.search);
+    let fileParam = urlParams.get('file');
+    if (fileParam) {
+        try {
+            finalFile = decodeURIComponent(atob(fileParam));
+            document.getElementById('filePage').style.display = 'block';
+            startCountdown();
+        } catch (e) {
+            console.error("Invalid file token");
+            document.getElementById('authPage').style.display = 'block';
+        }
+    } else {
+        document.getElementById('authPage').style.display = 'block';
+    }
+})();
 
 document.getElementById('adminPass').addEventListener('keypress', function(e) {
     if (e.key === 'Enter') {
@@ -123,22 +143,6 @@ function copyMoneyLink() {
     alert('Copied money link to clipboard! 💰');
 }
 
-window.onload = function() {
-    const urlParams = new URLSearchParams(window.location.search);
-    let fileParam = urlParams.get('file');
-    if (fileParam) {
-        try {
-            finalFile = decodeURIComponent(atob(fileParam));
-            document.getElementById('authPage').style.display = 'none';
-            document.getElementById('converterPage').style.display = 'none';
-            document.getElementById('filePage').style.display = 'block';
-            startCountdown();
-        } catch (e) {
-            console.error("Invalid file token");
-        }
-    }
-};
-
 function startCountdown() {
     let timeLeft = 5;
     let countElem = document.getElementById('count');
@@ -163,3 +167,4 @@ function goToFile() {
 </script>
 </body>
 </html>
+
