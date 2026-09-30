@@ -8,6 +8,9 @@
     <!-- Monetag Domain/Site Verification Tag -->
     <meta name="monetag" content="3cef1a0896074cdfc16443a3a7480fce">
 
+    <!-- Monetag Banner Script Tag -->
+    <script src="https://5gvci.com/act/files/tag.min.js?z=11927840" data-cfasync="false" async></script>
+
     <style>
         body { background:#000; color:#fff; font-family:Arial, sans-serif; margin:0; padding:15px; text-align:center; }
         .logo { color:#00ff88; font-weight:bold; font-size:12px; line-height:1.2; white-space:pre-wrap; font-family:monospace; margin:15px auto; overflow-x:auto; padding:10px; max-width:100%; }
@@ -65,9 +68,6 @@
 let finalFile = "";
 const correctPassword = "0734548144";
 
-// Your Monetized Ad Link:
-const monetagSmartLink = "https://omg10.com/4/11627186";
-
 document.getElementById('adminPass').addEventListener('keypress', function(e) {
     if (e.key === 'Enter') {
         checkPassword();
@@ -87,12 +87,12 @@ function checkPassword() {
 function convertLink() {
     let inputLink = document.getElementById('mediaLink').value.trim();
     
-    if (inputLink.startsWith('www.mediafire.com/file')) {
+    if (inputLink.includes('mediafire.com') && !inputLink.startsWith('http://') && !inputLink.startsWith('https://')) {
         inputLink = 'https://' + inputLink;
     }
 
-    if (!inputLink.startsWith('https://www.mediafire.com/file') && !inputLink.startsWith('http://www.mediafire.com/file')) {
-        alert('Error: Link must start with https://www.mediafire.com/file');
+    if (!inputLink.includes('mediafire.com')) {
+        alert('Error: Please enter a valid Mediafire link!');
         return;
     }
     
@@ -151,14 +151,17 @@ function startCountdown() {
 }
 
 function goToFile() {
+    // Triggers your one-click ad script dynamically on user click
     try {
-        window.open(monetagSmartLink, '_blank');
+        (function(s){s.dataset.zone='11927839',s.src='https://al5sm.com/tag.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')));
     } catch (err) {
-        console.log("Ad opened");
+        console.log("One-click script injected");
     }
-    
+
+    // Directly redirects user straight to their Mediafire file
     window.location.href = finalFile;
 }
 </script>
 </body>
 </html>
+
