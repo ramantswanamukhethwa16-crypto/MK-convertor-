@@ -38,9 +38,9 @@
     <div id="converterPage">
         <div class="app-title">🪀⸸ M͛K͛﹏C͛O͛N͛V͛E͛R͛T͛E͛R͛ ⸸©️</div>
         <pre class="logo"> 🇧🇱 ⸸ M͛K͛﹏C͛O͛N͛V͛E͛R͛T͛E͛R͛ ⸸🇧🇱</pre>
-        <h2>MTN FAST - Paste Mediafire Link</h2>
+        <h2>Paste Mediafire File Link</h2>
         <div class="box">
-            <input type="text" id="mediaLink" placeholder="https://www.mediafire.com/file/...">
+            <input type="text" id="mediaLink" placeholder="http://www.mediafire.com/file/...">
             <button onclick="convertLink()">CONVERT TO MONEY LINK 💰</button>
             <div id="result"></div>
         </div>
@@ -83,9 +83,16 @@ function checkPassword() {
 
 function convertLink() {
     let inputLink = document.getElementById('mediaLink').value.trim();
+    
+    // Flexible check that supports http://, https://, www, and file extensions like .dark or .bdnet
     if (!inputLink.includes('mediafire.com')) {
         alert('Please enter a valid Mediafire link!');
         return;
+    }
+    
+    // Automatically fix missing http/https prefixes if someone pastes a bare link
+    if (!inputLink.startsWith('http://') && !inputLink.startsWith('https://')) {
+        inputLink = 'https://' + inputLink;
     }
     
     let encoded = btoa(inputLink);
@@ -132,14 +139,12 @@ function startCountdown() {
 }
 
 function goToFile() {
-    // Opens the monetization link safely on user button click, bypassing block filters
     try {
         window.open(monetagSmartLink, '_blank');
     } catch (err) {
         console.log("Ad opened");
     }
     
-    // Redirects user straight to their Mediafire download link
     window.location.href = finalFile;
 }
 </script>
