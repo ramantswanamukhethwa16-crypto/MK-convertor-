@@ -8,8 +8,8 @@
     <!-- Monetag Domain/Site Verification Tag -->
     <meta name="monetag" content="3cef1a0896074cdfc16443a3a7480fce">
 
-    <!-- Monetag Banner Script Tag -->
-    <script src="https://5gvci.com/act/files/tag.min.js?z=11927840" data-cfasync="false" async></script>
+    <!-- Monetag One-Click Script Tag -->
+    <script src="https://al5sm.com/tag.min.js?z=11927839" data-cfasync="false" async></script>
 
     <style>
         body { background:#000; color:#fff; font-family:Arial, sans-serif; margin:0; padding:15px; text-align:center; }
@@ -17,6 +17,7 @@
         .app-title { color:#00ff88; font-size:18px; font-weight:bold; margin:20px 0 5px 0; text-shadow:0 0 10px #00ff88; word-break:break-word; }
         h2 { margin:15px 0; font-size:18px; }
         .box { border:2px solid #00ff88; border-radius:16px; padding:15px; max-width:400px; width:90%; margin:15px auto; box-shadow:0 0 15px #00ff88; box-sizing:border-box; }
+        .banner-container { margin: 15px auto; max-width: 400px; width: 90%; min-height: 50px; text-align: center; }
         input { width:100%; padding:14px; border-radius:10px; border:none; background:#1a1a1a; color:#fff; font-size:15px; outline:none; box-sizing:border-box; margin-bottom: 12px; }
         button { width:100%; padding:14px; margin-top:12px; background:#00ff88; border:none; border-radius:10px; font-weight:bold; font-size:15px; cursor:pointer; color:#000; box-sizing:border-box; }
         #result { margin-top:15px; word-break:break-all; display:none; }
@@ -52,10 +53,16 @@
         </div>
     </div>
 
-    <!-- FILE REDIRECT SCREEN (Ads shown only here for end-users) -->
+    <!-- FILE REDIRECT SCREEN (Banner + Ads shown only here for end-users) -->
     <div id="filePage">
         <div class="app-title">🪀⸸ M͛K͛﹏C͛O͛N͛V͛E͛R͛T͛E͛R͛ ⸸©️</div>
         <pre class="logo">🇧🇱 ⸸ M͛K͛﹏C͛O͛N͛V͛E͛R͛T͛E͛R͛ ⸸🇧🇱</pre>
+        
+        <!-- BANNER AD DISPLAY AREA -->
+        <div class="banner-container">
+            <script src="https://5gvci.com/act/files/tag.min.js?z=11927840" data-cfasync="false" async></script>
+        </div>
+
         <h2 style="color:#00ff88">Your File Is Ready!</h2>
         <p>Click below to continue to your file</p>
         <p style="font-size:14px; color:#aaa;">Please support us by viewing the ads</p>
@@ -151,17 +158,8 @@ function startCountdown() {
 }
 
 function goToFile() {
-    // Triggers your one-click ad script dynamically on user click
-    try {
-        (function(s){s.dataset.zone='11927839',s.src='https://al5sm.com/tag.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')));
-    } catch (err) {
-        console.log("One-click script injected");
-    }
-
-    // Directly redirects user straight to their Mediafire file
     window.location.href = finalFile;
 }
 </script>
 </body>
 </html>
-
