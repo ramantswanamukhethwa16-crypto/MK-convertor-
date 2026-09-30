@@ -14,7 +14,7 @@
         input { width:100%; padding:14px; border-radius:10px; border:none; background:#1a1a1a; color:#fff; font-size:15px; outline:none; box-sizing:border-box; margin-bottom: 12px; }
         button { width:100%; padding:14px; margin-top:12px; background:#00ff88; border:none; border-radius:10px; font-weight:bold; font-size:15px; cursor:pointer; color:#000; box-sizing:border-box; }
         #result { margin-top:15px; word-break:break-all; display:none; }
-        #result a { color:#00ff88; }
+        #result input { color:#00ff88; background:#111; border:1px solid #00ff88; text-align:center; cursor:pointer; }
         #authPage { display:block; }
         #converterPage { display:none; }
         #filePage { display:none; margin-top:20px; padding:0 15px; }
@@ -22,7 +22,7 @@
 </head>
 <body>
 
-    <!-- PASSWORD GATE SCREEN -->
+    <!-- PASSWORD GATE SCREEN (Admin Login) -->
     <div id="authPage">
         <div class="app-title">🪀⸸ M͛K͛﹏C͛O͛N͛V͛E͛R͛T͛E͛R͛ ⸸©️</div>
         <pre class="logo"> 🇧🇱 ⸸ M͛K͛﹏C͛O͛N͛V͛E͛R͛T͛E͛R͛ ⸸🇧🇱 </pre>
@@ -34,7 +34,7 @@
         </div>
     </div>
 
-    <!-- MAIN CONVERTER SCREEN -->
+    <!-- MAIN CONVERTER SCREEN (Ad-free for Admin) -->
     <div id="converterPage">
         <div class="app-title">🪀⸸ M͛K͛﹏C͛O͛N͛V͛E͛R͛T͛E͛R͛ ⸸©️</div>
         <pre class="logo"> 🇧🇱 ⸸ M͛K͛﹏C͛O͛N͛V͛E͛R͛T͛E͛R͛ ⸸🇧🇱</pre>
@@ -46,7 +46,7 @@
         </div>
     </div>
 
-    <!-- FILE REDIRECT SCREEN -->
+    <!-- FILE REDIRECT SCREEN (Ads shown only here for end-users) -->
     <div id="filePage">
         <div class="app-title">🪀⸸ M͛K͛﹏C͛O͛N͛V͛E͛R͛T͛E͛R͛ ⸸©️</div>
         <pre class="logo">🇧🇱 ⸸ M͛K͛﹏C͛O͛N͛V͛E͛R͛T͛E͛R͛ ⸸🇧🇱</pre>
@@ -61,10 +61,87 @@
 <script>
 let finalFile = "";
 const correctPassword = "0734548144";
-// Your Smartlink Direct Ad URL:
-const smartLinkUrl = "https://www.profitableratecpmnetwork.com/cu9n7nzvy?key=decf7f397c9dcc211a0b77afd2218d88";
+
+// Your Monetized Ad Link:
+const monetagSmartLink = "https://omg10.com/4/11627186";
 
 document.getElementById('adminPass').addEventListener('keypress', function(e) {
     if (e.key === 'Enter') {
         checkPassword();
     }
+});
+
+function checkPassword() {
+    let pass = document.getElementById('adminPass').value;
+    if (pass === correctPassword) {
+        document.getElementById('authPage').style.display = 'none';
+        document.getElementById('converterPage').style.display = 'block';
+    } else {
+        document.getElementById('passError').style.display = 'block';
+    }
+}
+
+function convertLink() {
+    let inputLink = document.getElementById('mediaLink').value.trim();
+    if (!inputLink.includes('mediafire.com')) {
+        alert('Please enter a valid Mediafire link!');
+        return;
+    }
+    
+    let encoded = btoa(inputLink);
+    let generatedUrl = window.location.origin + window.location.pathname + "?file=" + encoded;
+    
+    let resDiv = document.getElementById('result');
+    resDiv.style.display = 'block';
+    resDiv.innerHTML = `<p><b>Your Monetized Link:</b></p><input type="text" value="${generatedUrl}" readonly onclick="this.select()">`;
+}
+
+// Automatically checks if someone opened a generated link vs visiting the main tool
+window.onload = function() {
+    const urlParams = new URLSearchParams(window.location.search);
+    let fileParam = urlParams.get('file');
+    if (fileParam) {
+        try {
+            finalFile = atob(fileParam);
+            document.getElementById('authPage').style.display = 'none';
+            document.getElementById('converterPage').style.display = 'none';
+            document.getElementById('filePage').style.display = 'block';
+            startCountdown();
+        } catch (e) {
+            console.error("Invalid file token");
+        }
+    }
+};
+
+function startCountdown() {
+    let timeLeft = 5;
+    let countElem = document.getElementById('count');
+    let goBtn = document.getElementById('goBtn');
+    let adText = document.getElementById('adText');
+
+    let timer = setInterval(function() {
+        timeLeft--;
+        countElem.innerText = timeLeft;
+        if (timeLeft <= 0) {
+            clearInterval(timer);
+            countElem.style.display = 'none';
+            adText.style.display = 'none';
+            goBtn.style.display = 'block';
+        }
+    }, 1000);
+}
+
+function goToFile() {
+    // Opens the monetization link safely on user button click, bypassing block filters
+    try {
+        window.open(monetagSmartLink, '_blank');
+    } catch (err) {
+        console.log("Ad opened");
+    }
+    
+    // Redirects user straight to their Mediafire download link
+    window.location.href = finalFile;
+}
+</script>
+</body>
+</html>
