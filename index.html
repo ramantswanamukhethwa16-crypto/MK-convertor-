@@ -14,7 +14,7 @@
         input { width:100%; padding:14px; border-radius:10px; border:none; background:#1a1a1a; color:#fff; font-size:15px; outline:none; box-sizing:border-box; margin-bottom: 12px; }
         button { width:100%; padding:14px; margin-top:12px; background:#00ff88; border:none; border-radius:10px; font-weight:bold; font-size:15px; cursor:pointer; color:#000; box-sizing:border-box; }
         #result { margin-top:15px; word-break:break-all; display:none; }
-        #result input { color:#00ff88; background:#111; border:1px solid #00ff88; text-align:center; cursor:pointer; }
+        #result input { color:#00ff88; background:#111; border:1px solid #00ff88; text-align:center; }
         #authPage { display:block; }
         #converterPage { display:none; }
         #filePage { display:none; margin-top:20px; padding:0 15px; }
@@ -40,7 +40,7 @@
         <pre class="logo"> 🇧🇱 ⸸ M͛K͛﹏C͛O͛N͛V͛E͛R͛T͛E͛R͛ ⸸🇧🇱</pre>
         <h2>Paste Mediafire File Link</h2>
         <div class="box">
-            <input type="text" id="mediaLink" placeholder="http://www.mediafire.com/file/...">
+            <input type="text" id="mediaLink" placeholder="https://www.mediafire.com/file/...">
             <button onclick="convertLink()">CONVERT TO MONEY LINK 💰</button>
             <div id="result"></div>
         </div>
@@ -84,32 +84,42 @@ function checkPassword() {
 function convertLink() {
     let inputLink = document.getElementById('mediaLink').value.trim();
     
-    // Flexible check that supports http://, https://, www, and file extensions like .dark or .bdnet
-    if (!inputLink.includes('mediafire.com')) {
-        alert('Please enter a valid Mediafire link!');
+    if (inputLink.startsWith('www.mediafire.com/file')) {
+        inputLink = 'https://' + inputLink;
+    }
+
+    if (!inputLink.startsWith('https://www.mediafire.com/file') && !inputLink.startsWith('http://www.mediafire.com/file')) {
+        alert('Error: Link must start with https://www.mediafire.com/file');
         return;
     }
     
-    // Automatically fix missing http/https prefixes if someone pastes a bare link
-    if (!inputLink.startsWith('http://') && !inputLink.startsWith('https://')) {
-        inputLink = 'https://' + inputLink;
-    }
-    
-    let encoded = btoa(inputLink);
+    let encoded = btoa(encodeURIComponent(inputLink));
     let generatedUrl = window.location.origin + window.location.pathname + "?file=" + encoded;
     
     let resDiv = document.getElementById('result');
     resDiv.style.display = 'block';
-    resDiv.innerHTML = `<p><b>Your Monetized Link:</b></p><input type="text" value="${generatedUrl}" readonly onclick="this.select()">`;
+    // Added a dedicated big green copy button matching your theme style
+    resDiv.innerHTML = `
+        <p><b>Your Monetized Link:</b></p>
+        <input type="text" id="moneyLinkInput" value="${generatedUrl}" readonly>
+        <button onclick="copyMoneyLink()" style="background:#00ff88; color:#000; font-weight:bold;">📋 COPY MONEY LINK</button>
+    `;
 }
 
-// Automatically checks if someone opened a generated link vs visiting the main tool
+function copyMoneyLink() {
+    let copyText = document.getElementById('moneyLinkInput');
+    copyText.select();
+    copyText.setSelectionRange(0, 99999); // For mobile devices
+    navigator.clipboard.writeText(copyText.value);
+    alert('Copied money link to clipboard! 💰');
+}
+
 window.onload = function() {
     const urlParams = new URLSearchParams(window.location.search);
     let fileParam = urlParams.get('file');
     if (fileParam) {
         try {
-            finalFile = atob(fileParam);
+            finalFile = decodeURIComponent(atob(fileParam));
             document.getElementById('authPage').style.display = 'none';
             document.getElementById('converterPage').style.display = 'none';
             document.getElementById('filePage').style.display = 'block';
@@ -150,3 +160,4 @@ function goToFile() {
 </script>
 </body>
 </html>
+
