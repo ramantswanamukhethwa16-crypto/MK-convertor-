@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>🇧🇱 ⸸ M͛K͛﹏ÞØØZ ⸸ 🇧🇱</title>
 
+    <!-- Monetag Domain/Site Verification Tag -->
+    <meta name="monetag" content="fa776158b1c9a6bdeb2cc108b0f3ec79">
+
     <style>
         body { background:#000; color:#fff; font-family:Arial, sans-serif; margin:0; padding:15px; text-align:center; }
         .logo { color:#00ff88; font-weight:bold; font-size:12px; line-height:1.2; white-space:pre-wrap; font-family:monospace; margin:15px auto; overflow-x:auto; padding:10px; max-width:100%; }
@@ -98,7 +101,6 @@ function convertLink() {
     
     let resDiv = document.getElementById('result');
     resDiv.style.display = 'block';
-    // Added a dedicated big green copy button matching your theme style
     resDiv.innerHTML = `
         <p><b>Your Monetized Link:</b></p>
         <input type="text" id="moneyLinkInput" value="${generatedUrl}" readonly>
@@ -109,7 +111,7 @@ function convertLink() {
 function copyMoneyLink() {
     let copyText = document.getElementById('moneyLinkInput');
     copyText.select();
-    copyText.setSelectionRange(0, 99999); // For mobile devices
+    copyText.setSelectionRange(0, 99999);
     navigator.clipboard.writeText(copyText.value);
     alert('Copied money link to clipboard! 💰');
 }
