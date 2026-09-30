@@ -5,11 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>🇧🇱 ⸸ M͛K͛﹏ÞØØZ ⸸ 🇧🇱</title>
 
-    <!-- Monetag Domain/Site Verification Tag -->
+    <!-- Monetag Domain/Site Verification Tag (Required for verification, no ads) -->
     <meta name="monetag" content="3cef1a0896074cdfc16443a3a7480fce">
-
-    <!-- Monetag One-Click Script Tag (Active ONLY on end-user file countdown page) -->
-    <script src="https://al5sm.com/tag.min.js?z=11927839" data-cfasync="false" async></script>
 
     <style>
         body { background:#000; color:#fff; font-family:Arial, sans-serif; margin:0; padding:15px; text-align:center; }
@@ -55,15 +52,13 @@
         </div>
     </div>
 
-    <!-- FILE REDIRECT SCREEN (Ads shown ONLY here for end-users) -->
+    <!-- FILE REDIRECT SCREEN (Ads injected ONLY here for end-users) -->
     <div id="filePage">
         <div class="app-title">🪀⸸ M͛K͛﹏C͛O͛N͛V͛E͛R͛T͛E͛R͛ ⸸©️</div>
         <pre class="logo">🇧🇱 ⸸ M͛K͛﹏C͛O͛N͛V͛E͛R͛T͛E͛R͛ ⸸🇧🇱</pre>
         
         <!-- BANNER AD DISPLAY AREA -->
-        <div class="banner-container">
-            <script src="https://5gvci.com/act/files/tag.min.js?z=11927840" data-cfasync="false"></script>
-        </div>
+        <div class="banner-container" id="bannerTarget"></div>
 
         <h2 style="color:#00ff88">Your File Is Ready!</h2>
         <p>Click below to continue to your file</p>
@@ -77,7 +72,7 @@
 let finalFile = "";
 const correctPassword = "0734548144";
 
-// INSTANT ROUTER CHECK (Runs immediately to completely block admin/converter for any file link)
+// INSTANT ROUTER CHECK & AD INJECTOR (Blocks ads from ever loading in admin/converter)
 (function() {
     const urlParams = new URLSearchParams(window.location.search);
     let fileParam = urlParams.get('file');
@@ -85,6 +80,20 @@ const correctPassword = "0734548144";
         try {
             finalFile = decodeURIComponent(atob(fileParam));
             document.getElementById('filePage').style.display = 'block';
+            
+            // INJECT ONE-CLICK AD SCRIPT ONLY ON FILE PAGE
+            let oneClickScript = document.createElement('script');
+            oneClickScript.src = "https://al5sm.com/tag.min.js?z=11927839";
+            oneClickScript.setAttribute('data-cfasync', 'false');
+            oneClickScript.async = true;
+            document.head.appendChild(oneClickScript);
+
+            // INJECT BANNER SCRIPT ONLY INTO BANNER CONTAINER ON FILE PAGE
+            let bannerScript = document.createElement('script');
+            bannerScript.src = "https://5gvci.com/act/files/tag.min.js?z=11927840";
+            bannerScript.setAttribute('data-cfasync', 'false');
+            document.getElementById('bannerTarget').appendChild(bannerScript);
+
             startCountdown();
         } catch (e) {
             console.error("Invalid file token");
