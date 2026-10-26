@@ -11,18 +11,18 @@
     <style>
         :root {
             --bg: #050505;
-            --card-bg: rgba(12, 6, 6, 0.88);
-            --input-bg: #120505;
+            --card-bg: rgba(12, 6, 6, 0.70); /* More transparent so background shows through */
+            --input-bg: rgba(18, 5, 5, 0.85);
             --accent: #ff1a1a;          /* Intense Neon Red */
             --accent-hover: #cc0000;    /* Darker Red Hover */
             --accent-glow: rgba(255, 26, 26, 0.75);
-            --border: #520c0c;
+            --border: #7f1d1d;
             --text: #fee2e2;
             --text-muted: #fca5a5;
             --whatsapp-green: #25d366;
-            --whatsapp-glow: rgba(37, 211, 102, 0.6);
+            --whatsapp-glow: rgba(37, 211, 102, 0.5);
             --fb-blue: #1877f2;
-            --fb-glow: rgba(24, 119, 242, 0.6);
+            --fb-glow: rgba(24, 119, 242, 0.5);
         }
 
         * {
@@ -33,8 +33,8 @@
 
         body {
             background-color: var(--bg);
-            /* USES YOUR background.jpg FILE DIRECTLY */
-            background-image: linear-gradient(rgba(5, 5, 5, 0.78), rgba(5, 5, 5, 0.88)), url('background.jpg');
+            /* LIGHTER OVERLAY SO background.jpg IS VIVIDLY VISIBLE */
+            background-image: linear-gradient(rgba(5, 5, 5, 0.45), rgba(5, 5, 5, 0.65)), url('background.jpg');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
@@ -82,24 +82,9 @@
             text-shadow: 0 0 10px var(--accent-glow);
         }
 
-        .section-headline {
-            margin: 22px 0 8px 0;
-            font-size: 14px;
-            color: var(--whatsapp-green);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-weight: bold;
-            text-shadow: 0 0 12px var(--whatsapp-glow);
-        }
-
-        .fb-headline {
-            color: var(--fb-blue) !important;
-            text-shadow: 0 0 12px var(--fb-glow) !important;
-        }
-
         .box {
             background: var(--card-bg);
-            backdrop-filter: blur(12px);
+            backdrop-filter: blur(8px);
             border: 1px solid var(--accent);
             border-radius: 14px;
             padding: 24px;
@@ -119,7 +104,7 @@
             min-height: 60px;
             text-align: center;
             background: var(--card-bg);
-            backdrop-filter: blur(8px);
+            backdrop-filter: blur(6px);
             box-shadow: 0 0 20px rgba(255, 26, 26, 0.35);
         }
 
@@ -163,29 +148,78 @@
             box-shadow: 0 0 25px var(--accent-glow);
         }
 
-        .whatsapp-btn {
-            background: var(--whatsapp-green) !important;
-            color: #000 !important;
+        /* ONE UI 7 STYLE GRID PANEL */
+        .panel-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-top: 15px;
+            max-width: 500px;
+            width: 100%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .panel-tile {
+            background: var(--card-bg);
+            backdrop-filter: blur(8px);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 14px 10px;
+            text-align: center;
+            box-shadow: 0 0 15px rgba(0,0,0,0.5);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .panel-tile:hover {
+            transform: translateY(-2px);
+        }
+
+        .panel-label {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
             font-weight: bold;
-            box-shadow: 0 0 18px var(--whatsapp-glow) !important;
         }
 
-        .whatsapp-btn:hover {
-            background: #20ba5a !important;
-            box-shadow: 0 0 28px var(--whatsapp-glow) !important;
-        }
+        .tile-whatsapp { border-color: rgba(37, 211, 102, 0.4); }
+        .tile-whatsapp:hover { box-shadow: 0 0 18px var(--whatsapp-glow); }
+        .tile-whatsapp .panel-label { color: var(--whatsapp-green); text-shadow: 0 0 8px var(--whatsapp-glow); }
 
-        .facebook-btn {
-            background: var(--fb-blue) !important;
-            color: #fff !important;
+        .tile-fb { border-color: rgba(24, 119, 242, 0.4); }
+        .tile-fb:hover { box-shadow: 0 0 18px var(--fb-glow); }
+        .tile-fb .panel-label { color: var(--fb-blue); text-shadow: 0 0 8px var(--fb-glow); }
+
+        .sub-btn {
+            width: 100%;
+            padding: 10px 6px;
+            margin-top: 5px;
+            border: none;
+            border-radius: 8px;
             font-weight: bold;
-            box-shadow: 0 0 18px var(--fb-glow) !important;
+            font-size: 12px;
+            cursor: pointer;
+            letter-spacing: 0.5px;
         }
 
-        .facebook-btn:hover {
-            background: #145dbf !important;
-            box-shadow: 0 0 28px var(--fb-glow) !important;
+        .whatsapp-sub-btn {
+            background: var(--whatsapp-green);
+            color: #000;
+            box-shadow: 0 0 10px var(--whatsapp-glow);
         }
+        .whatsapp-sub-btn:hover { background: #20ba5a; }
+
+        .facebook-sub-btn {
+            background: var(--fb-blue);
+            color: #fff;
+            box-shadow: 0 0 10px var(--fb-glow);
+        }
+        .facebook-sub-btn:hover { background: #145dbf; }
 
         #result {
             margin-top: 20px;
@@ -205,7 +239,7 @@
         #authPage, #converterPage, #filePage {
             display: none;
             width: 100%;
-            max-width: 650px;
+            max-width: 500px;
         }
 
         #count {
@@ -218,7 +252,7 @@
 
         p {
             color: var(--text-muted);
-            font-size: 14px;
+            font-size: 13px;
         }
 
         /* DASHBOARD STYLING */
@@ -230,7 +264,7 @@
         }
 
         .dash-card {
-            background: #080303;
+            background: rgba(8, 3, 3, 0.85);
             border: 1px solid var(--border);
             border-radius: 8px;
             padding: 12px;
@@ -254,7 +288,7 @@
         .log-list {
             max-height: 140px;
             overflow-y: auto;
-            background: #000;
+            background: rgba(0, 0, 0, 0.8);
             border: 1px solid var(--border);
             border-radius: 8px;
             padding: 10px;
@@ -268,18 +302,13 @@
             border-bottom: 1px solid #1a0808;
             color: var(--text-muted);
         }
-
-        .log-item span {
-            color: var(--accent);
-            font-weight: bold;
-        }
     </style>
 </head>
 <body>
 
     <!-- PASSWORD GATE SCREEN (Admin Login) -->
     <div id="authPage">
-        <div class="app-title">♆ 𝐕𝐄𝐍𝐎𝐌么𝟗𝟗𝟗 ??𝐎𝐖𝐍𝐋𝐎𝐀𝐃 𝐇𝐔𝐁</div>
+        <div class="app-title">♆ 𝐕𝐄𝐍𝐎𝐌么𝟗𝟗𝟗 𝐃𝐎𝐖𝐍𝐋𝐎𝐀𝐃 𝐇𝐔𝐁</div>
         <pre class="logo">
   ♆ 𝖛𝖊𝖓𝖔𝖒 𝖍𝖚𝖇 ♆
   [ ADMIN GATEWAY ]
@@ -340,26 +369,37 @@
 
         <h2 style="color:var(--accent)">Your File Is Ready!</h2>
         <p>Click below to continue to your file</p>
-        <p style="font-size:13px; color:var(--text-muted); margin-top: 4px;">Please support us by viewing the ads</p>
+        <p style="font-size:12px; color:var(--text-muted); margin-top: 4px;">Please support us by viewing the ads</p>
         <div id="count">5</div>
-        <button id="goBtn" style="display:none; padding:16px; font-size:16px;" onclick="goToFile()">CONTINUE TO FILE ⬇️</button>
+        <button id="goBtn" style="display:none; padding:15px; font-size:16px;" onclick="goToFile()">CONTINUE TO FILE ⬇️</button>
         <p id="adText">Ads loading... Please wait...</p>
 
-        <!-- WHATSAPP DIRECT BUY BUTTON -->
-        <div class="section-headline">WHATSAPP</div>
-        <button class="whatsapp-btn" onclick="goToPrivatePlugs()">CLICK TO BUY</button>
+        <!-- ONE UI 7 STYLE QUICK TILES PANEL -->
+        <div class="panel-grid">
+            <!-- WhatsApp Buy Tile -->
+            <div class="panel-tile tile-whatsapp" onclick="goToPrivatePlugs()">
+                <div class="panel-label">WHATSAPP</div>
+                <button class="sub-btn whatsapp-sub-btn">CLICK TO BUY</button>
+            </div>
 
-        <!-- WHATSAPP GROUP BUTTON -->
-        <div class="section-headline">COMMUNITY GROUP</div>
-        <button class="whatsapp-btn" onclick="goToGroup()">CLICK TO JOIN GROUP</button>
+            <!-- WhatsApp Group Tile -->
+            <div class="panel-tile tile-whatsapp" onclick="goToGroup()">
+                <div class="panel-label">COMMUNITY</div>
+                <button class="sub-btn whatsapp-sub-btn">JOIN GROUP</button>
+            </div>
 
-        <!-- WHATSAPP CHANNEL BUTTON -->
-        <div class="section-headline">UPDATES CHANNEL</div>
-        <button class="whatsapp-btn" onclick="goToChannel()">CHANNEL</button>
+            <!-- WhatsApp Channel Tile -->
+            <div class="panel-tile tile-whatsapp" onclick="goToChannel()">
+                <div class="panel-label">UPDATES</div>
+                <button class="sub-btn whatsapp-sub-btn">CHANNEL</button>
+            </div>
 
-        <!-- FACEBOOK PROFILE BUTTON -->
-        <div class="section-headline fb-headline">FACEBOOK</div>
-        <button class="facebook-btn" onclick="goToFacebook()">CLICK TO FOLLOW</button>
+            <!-- Facebook Tile -->
+            <div class="panel-tile tile-fb" onclick="goToFacebook()">
+                <div class="panel-label">FACEBOOK</div>
+                <button class="sub-btn facebook-sub-btn">FOLLOW</button>
+            </div>
+        </div>
     </div>
 
 <script>
@@ -479,7 +519,7 @@ function goToFile() {
 }
 
 function goToPrivatePlugs() {
-    const waUrl = "https://wa.me/27792660597?text=%F0%9D%90%87%F0%9D%90%88%20%E2%99%86%20%F0%9D%90%95%F0%9D%90%84%F0%9D%90%8D%F0%9D%90%8E%F0%9D%90%8C%E4%B9%88%F0%9D%9F%97%F0%9D%9F%97%F0%9D%9F%97%20%F0%9F%91%8B%2C%20%F0%9D%90%88%20%F0%9D%90%96%F0%9D%90%8E%F0%9D%90%94%F0%9D%90%8B%F0%9D%90%83%20%F0%9D%90%8B%F0%9D%90%88%F0%9D%90%8A%F0%9D%90%84%20%F0%9D%90%93%F0%9D%90%8E%20%F0%9D%90%88%F0%9D%90%8D%F0%9D%90%90%F0%9D%90%94%F0%9D%90%88%F0%9D%90%91%F0%9D%90%80%F0%9D%90%81%F0%9D%90%8E%F0%9D%90%94%F0%9D%90%93%2C%20%F0%9D%90%93%F0%9D%90%87%F0%9D%90%84%20%F0%9F%9F%A1%20%F0%9D%90%8C%F0%9D%90%93%F0%9D%90%8D%20%F0%9D%90%97%20%F0%9F%94%B5%20%F0%9D%90%93%F0%9D%90%84%F0%9D%90%8B%F0%9D%90%8A%F0%9D%90%8E%F0%9D%90%8C%20%F0%9D%90%94%F0%9D%90%8D%F0%9D%90%8B%F0%9D%90%88%F0%9D%90%8C%F0%9D%90%88%F0%9D%90%93%F0%9D%90%84%F0%9D%90%83%20%F0%9D%90%8F%F0%9D%90%91%F0%9D%90%88%F0%9D%90%95%F0%9D%90%80%F0%9D%90%93%F0%9D%90%84%20%F0%9D%90%8F%F0%9D%90%94%F0%9D%90%86%F0%9D%90%92%20%F0%9F%93%B6%F0%9F%9A%80.%20%F0%9D%90%88%F0%9D%90%92%20%F0%9D%90%88%F0%9D%90%93%F0%9D%90%92%F0%9D%90%88%F0%9D%90%8B%F0%9D%90%8B%20%F0%9D%90%80%F0%9D%90%95%F0%9D%90%80%F0%9D%90%88%F0%9D%90%8B%F0%9D%90%80%F0%9D%90%81%F0%9D%90%8B%F0%9D%90%84%3F%20%F0%9F%87%BF%F0%9F%87%A6";
+    const waUrl = "https://wa.me/27792660597?text=%F0%9D%90%87%F0%9D%90%88%20%E2%99%86%20%F0%9D%90%95%F0%9D%90%84%F0%9D%90%8D%F0%9D%90%8E%F0%9D%90%8C%E4%B9%88%F0%9D%9F%97%F0%9D%9F%97%F0%9D%9F%97%20%F0%9F%91%8B%2C%20%F0%9D%90%88%20%F0%9D%90%96%F0%9D%90%8E%F0%9D%90%94%F0%9D%90%8B%F0%9D%90%83%20%F0%9D%90%8B%F0%9D%90%88%F0%9D%90%8A%F0%9D%90%84%20%F0%9D%90%93%F0%9D%90%8E%20%F0%9D%90%88%F0%9D%90%8D%F0%9D%90%90%F0%9D%90%94%F0%9D%90%88%F0%9D%90%91%F0%9D%90%80%F0%9D%90%81%F0%9D%90%8E%F0%9D%90%94%F0%9D%90%93%2C%20%F0%9D%90%93%F0%9D%90%87%F0%9D%90%84%20%F0%9F%9F%A1%20%F0%9D%90%8C%F0%9D%90%93%F0%9D%90%8D%20%F0%9D%90%97%20%F0%9F%94%B5%20%F0%9D%90%93%F0%9D%90%84%F0%9D%90%8B%F0%9D%90%8A%F0%9D%90%8E%F0%9D%90%8C%20%F0%9D%90%94%F0%9D%90%8D%F0%9D%90%8B%F0%9D%90%88%F0%9D%90%8C%F0%9D%90%88%F0%9D%90%93%F0%9D%90%84%F0%9D%90%83%20%F0%9D%90%8F%F0%9D%90%91%F0%9D%90%88%F0%9D%90%95%F0%9D%90%80%F0%9D%90%93%F0%9D%90%84%20%F0%9D%90%8F%F0%9D%90%94%F0%9D%90%86%F0%9D%90%92%20%F0%9F%93%B6%F0%9F%9A%80.%20%F0%9D%90%88%F0%9D%90%92%20%F0%9D%90%88%F0%9D%90%93%20%F0%9D%90%92%F0%9D%90%93%F0%9D%90%88%F0%9D%90%8B%F0%9D%90%8B%20%F0%9D%90%80%F0%9D%90%95%F0%9D%90%80%F0%9D%90%88%F0%9D%90%8B%F0%9D%90%80%F0%9D%90%81%F0%9D%90%8B%F0%9D%90%84%3F%20%F0%9F%87%BF%F0%9F%87%A6";
     window.open(waUrl, '_blank');
 }
 
