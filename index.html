@@ -11,7 +11,7 @@
     <style>
         :root {
             --bg: #050505;
-            --card-bg: rgba(12, 8, 8, 0.85);
+            --card-bg: rgba(12, 8, 8, 0.88);
             --input-bg: #120808;
             --accent: #ff1a1a;          /* Intense Neon Red */
             --accent-hover: #cc0000;    /* Darker Red Hover */
@@ -21,6 +21,8 @@
             --text-muted: #fca5a5;
             --whatsapp-green: #25d366;
             --whatsapp-glow: rgba(37, 211, 102, 0.6);
+            --fb-blue: #1877f2;
+            --fb-glow: rgba(24, 119, 242, 0.6);
         }
 
         * {
@@ -31,8 +33,8 @@
 
         body {
             background-color: var(--bg);
-            /* BACKGROUND IMAGE POINTING TO background.jpg WITH DARK RED OVERLAY */
-            background-image: linear-gradient(rgba(5, 5, 5, 0.8), rgba(5, 5, 5, 0.9)), url('background.jpg');
+            background-image: linear-gradient(rgba(5, 5, 5, 0.82), rgba(5, 5, 5, 0.94)), 
+                              radial-gradient(circle at center, #2a0808 0%, #050505 100%);
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
@@ -49,7 +51,7 @@
 
         .app-title {
             color: var(--accent);
-            font-size: 19px;
+            font-size: clamp(18px, 4vw, 24px);
             font-weight: bold;
             margin: 15px 0 10px 0;
             text-shadow: 0 0 18px var(--accent-glow), 0 0 30px var(--accent-glow);
@@ -61,7 +63,7 @@
         .logo {
             color: var(--accent);
             font-weight: bold;
-            font-size: 13px;
+            font-size: clamp(11px, 2.5vw, 14px);
             line-height: 1.3;
             white-space: pre-wrap;
             font-family: monospace;
@@ -73,7 +75,7 @@
 
         h2 {
             margin: 15px 0;
-            font-size: 16px;
+            font-size: clamp(14px, 3vw, 18px);
             color: var(--text);
             text-transform: uppercase;
             letter-spacing: 1px;
@@ -82,12 +84,17 @@
 
         .section-headline {
             margin: 22px 0 8px 0;
-            font-size: 15px;
+            font-size: 14px;
             color: var(--whatsapp-green);
             text-transform: uppercase;
             letter-spacing: 1px;
             font-weight: bold;
             text-shadow: 0 0 12px var(--whatsapp-glow);
+        }
+
+        .fb-headline {
+            color: var(--fb-blue) !important;
+            text-shadow: 0 0 12px var(--fb-glow) !important;
         }
 
         .box {
@@ -96,7 +103,7 @@
             border: 1px solid var(--accent);
             border-radius: 14px;
             padding: 24px;
-            max-width: 420px;
+            max-width: 500px;
             width: 100%;
             margin: 15px auto;
             box-shadow: 0 0 30px var(--accent-glow), inset 0 0 15px rgba(255, 26, 26, 0.15);
@@ -107,7 +114,7 @@
             padding: 10px;
             border-radius: 10px;
             margin: 15px auto;
-            max-width: 420px;
+            max-width: 500px;
             width: 100%;
             min-height: 60px;
             text-align: center;
@@ -168,6 +175,18 @@
             box-shadow: 0 0 28px var(--whatsapp-glow) !important;
         }
 
+        .facebook-btn {
+            background: var(--fb-blue) !important;
+            color: #fff !important;
+            font-weight: bold;
+            box-shadow: 0 0 18px var(--fb-glow) !important;
+        }
+
+        .facebook-btn:hover {
+            background: #145dbf !important;
+            box-shadow: 0 0 28px var(--fb-glow) !important;
+        }
+
         #result {
             margin-top: 20px;
             word-break: break-all;
@@ -186,12 +205,12 @@
         #authPage, #converterPage, #filePage {
             display: none;
             width: 100%;
-            max-width: 450px;
+            max-width: 650px;
         }
 
         #count {
             color: var(--accent);
-            font-size: 56px;
+            font-size: clamp(40px, 8vw, 64px);
             font-weight: bold;
             margin: 15px 0;
             text-shadow: 0 0 25px var(--accent-glow), 0 0 40px var(--accent-glow);
@@ -201,13 +220,66 @@
             color: var(--text-muted);
             font-size: 14px;
         }
+
+        /* DASHBOARD STYLING */
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+            gap: 12px;
+            margin-top: 15px;
+        }
+
+        .dash-card {
+            background: #080303;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 12px;
+            text-align: center;
+        }
+
+        .dash-card h4 {
+            font-size: 11px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+        }
+
+        .dash-card p {
+            font-size: 20px;
+            font-weight: bold;
+            color: var(--accent);
+            margin-top: 4px;
+            text-shadow: 0 0 10px var(--accent-glow);
+        }
+
+        .log-list {
+            max-height: 140px;
+            overflow-y: auto;
+            background: #000;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 10px;
+            margin-top: 12px;
+            font-size: 12px;
+            text-align: left;
+        }
+
+        .log-item {
+            padding: 4px 0;
+            border-bottom: 1px solid #1a0808;
+            color: var(--text-muted);
+        }
+
+        .log-item span {
+            color: var(--accent);
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
 
     <!-- PASSWORD GATE SCREEN (Admin Login) -->
     <div id="authPage">
-        <div class="app-title">♆ 𝐕𝐄𝐍𝐎𝐌么𝟗𝟗𝟗 𝐃𝐎𝐖𝐍𝐋𝐎𝐀𝐃 𝐇𝐔𝐁</div>
+        <div class="app-title">♆ 𝐕𝐄𝐍??𝐌么𝟗𝟗𝟗 𝐃𝐎𝐖𝐍𝐋𝐎𝐀𝐃 𝐇𝐔𝐁</div>
         <pre class="logo">
   ♆ 𝖛𝖊𝖓𝖔𝖒 𝖍𝖚𝖇 ♆
   [ ADMIN GATEWAY ]
@@ -220,18 +292,38 @@
         </div>
     </div>
 
-    <!-- MAIN CONVERTER SCREEN -->
+    <!-- MAIN CONVERTER SCREEN & DASHBOARD -->
     <div id="converterPage">
         <div class="app-title">♆ 𝐕𝐄𝐍𝐎𝐌么𝟗𝟗𝟗 𝐃𝐎𝐖𝐍𝐋𝐎𝐀𝐃 𝐇𝐔𝐁</div>
         <pre class="logo">
   ♆ 𝖛𝖊𝖓𝖔𝖒 𝖍𝖚𝖇 ♆
-  [ LINK MONETIZER ]
+  [ LINK MONETIZER & DASHBOARD ]
         </pre>
+        
         <h2>Paste Mediafire File Link</h2>
         <div class="box">
             <input type="text" id="mediaLink" placeholder="https://www.mediafire.com/file/...">
             <button onclick="convertLink()">CONVERT TO MONEY LINK 💰</button>
             <div id="result"></div>
+        </div>
+
+        <!-- REAL-TIME DASHBOARD -->
+        <h2>⚡ Live Analytics Dashboard</h2>
+        <div class="box">
+            <div class="dashboard-grid">
+                <div class="dash-card">
+                    <h4>Today's Downloads</h4>
+                    <p id="todayCount">0</p>
+                </div>
+                <div class="dash-card">
+                    <h4>Total Conversions</h4>
+                    <p id="totalConversions">0</p>
+                </div>
+            </div>
+            <h4 style="margin-top:15px; font-size:12px; color:var(--text); text-align:left;">Recent Activity Log:</h4>
+            <div class="log-list" id="activityLog">
+                <div class="log-item">Waiting for connection activity...</div>
+            </div>
         </div>
     </div>
 
@@ -264,6 +356,10 @@
         <!-- WHATSAPP CHANNEL BUTTON -->
         <div class="section-headline">UPDATES CHANNEL</div>
         <button class="whatsapp-btn" onclick="goToChannel()">CHANNEL</button>
+
+        <!-- FACEBOOK PROFILE BUTTON -->
+        <div class="section-headline fb-headline">FACEBOOK</div>
+        <button class="facebook-btn" onclick="goToFacebook()">CLICK TO FOLLOW</button>
     </div>
 
 <script>
@@ -279,6 +375,9 @@ const correctPassword = "0734548144";
             finalFile = decodeURIComponent(atob(fileParam));
             document.getElementById('filePage').style.display = 'block';
             
+            // TRACK DOWNLOAD HIT
+            trackDownloadEvent();
+
             // INJECT ONE-CLICK AD SCRIPT ONLY ON FILE PAGE
             let oneClickScript = document.createElement('script');
             oneClickScript.src = "https://al5sm.com/tag.min.js?z=11927839";
@@ -313,6 +412,7 @@ function checkPassword() {
     if (pass === correctPassword) {
         document.getElementById('authPage').style.display = 'none';
         document.getElementById('converterPage').style.display = 'block';
+        loadDashboardStats();
     } else {
         document.getElementById('passError').style.display = 'block';
     }
@@ -340,6 +440,12 @@ function convertLink() {
         <input type="text" id="moneyLinkInput" value="${generatedUrl}" readonly>
         <button onclick="copyMoneyLink()">📋 COPY MONEY LINK</button>
     `;
+
+    // TRACK CONVERSION LOG
+    let conversions = parseInt(localStorage.getItem('total_conversions') || '0') + 1;
+    localStorage.setItem('total_conversions', conversions);
+    addLog(`New money link converted at ${new Date().toLocaleTimeString()}`);
+    loadDashboardStats();
 }
 
 function copyMoneyLink() {
@@ -383,6 +489,48 @@ function goToGroup() {
 
 function goToChannel() {
     window.open("https://whatsapp.com/channel/0029VbE5WU6HFxP9MwedVO05", '_blank');
+}
+
+function goToFacebook() {
+    window.open("https://www.facebook.com/profile.php?id=61594619023527", '_blank');
+}
+
+/* REALTIME TRACKING LOGIC */
+function trackDownloadEvent() {
+    let today = new Date().toISOString().split('T')[0];
+    let lastDate = localStorage.getItem('last_download_date');
+    let downloadsToday = parseInt(localStorage.getItem('downloads_today') || '0');
+
+    if (lastDate !== today) {
+        downloadsToday = 0;
+        localStorage.setItem('last_download_date', today);
+    }
+
+    downloadsToday++;
+    localStorage.setItem('downloads_today', downloadsToday);
+    addLog(`User opened download page at ${new Date().toLocaleTimeString()}`);
+}
+
+function addLog(message) {
+    let logs = JSON.parse(localStorage.getItem('activity_logs') || '[]');
+    logs.unshift(`[${new Date().toLocaleTimeString()}] ${message}`);
+    if (logs.length > 20) logs.pop();
+    localStorage.setItem('activity_logs', JSON.stringify(logs));
+}
+
+function loadDashboardStats() {
+    let today = new Date().toISOString().split('T')[0];
+    let lastDate = localStorage.getItem('last_download_date');
+    let downloadsToday = lastDate === today ? (localStorage.getItem('downloads_today') || '0') : '0';
+    
+    document.getElementById('todayCount').innerText = downloadsToday;
+    document.getElementById('totalConversions').innerText = localStorage.getItem('total_conversions') || '0';
+
+    let logs = JSON.parse(localStorage.getItem('activity_logs') || '[]');
+    let logElem = document.getElementById('activityLog');
+    if (logs.length > 0) {
+        logElem.innerHTML = logs.map(l => `<div class="log-item">${l}</div>`).join('');
+    }
 }
 </script>
 </body>
