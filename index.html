@@ -3,47 +3,207 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🇧🇱 ⸸ M͛K͛﹏ÞØØZ ⸸ 🇧🇱</title>
+    <title>♆ 𝐕𝐄𝐍𝐎𝐌么𝟗𝟗𝟗 𝐃𝐎𝐖𝐍𝐋𝐎𝐀𝐃 𝐇𝐔𝐁</title>
 
-    <!-- Monetag Domain/Site Verification Tag (Required for verification, no ads) -->
+    <!-- Monetag Domain/Site Verification Tag -->
     <meta name="monetag" content="3cef1a0896074cdfc16443a3a7480fce">
 
     <style>
-        body { background:#000; color:#fff; font-family:Arial, sans-serif; margin:0; padding:15px; text-align:center; }
-        .logo { color:#00ff88; font-weight:bold; font-size:12px; line-height:1.2; white-space:pre-wrap; font-family:monospace; margin:15px auto; overflow-x:auto; padding:10px; max-width:100%; }
-        .app-title { color:#00ff88; font-size:18px; font-weight:bold; margin:20px 0 5px 0; text-shadow:0 0 10px #00ff88; word-break:break-word; }
-        h2 { margin:15px 0; font-size:18px; }
-        .box { border:2px solid #00ff88; border-radius:16px; padding:15px; max-width:400px; width:90%; margin:15px auto; box-shadow:0 0 15px #00ff88; box-sizing:border-box; }
-        .banner-container { border: 1px dashed #00ff88; padding: 5px; border-radius: 10px; margin: 15px auto; max-width: 400px; width: 90%; min-height: 50px; text-align: center; }
-        input { width:100%; padding:14px; border-radius:10px; border:none; background:#1a1a1a; color:#fff; font-size:15px; outline:none; box-sizing:border-box; margin-bottom: 12px; }
-        button { width:100%; padding:14px; margin-top:12px; background:#00ff88; border:none; border-radius:10px; font-weight:bold; font-size:15px; cursor:pointer; color:#000; box-sizing:border-box; }
-        #result { margin-top:15px; word-break:break-all; display:none; }
-        #result input { color:#00ff88; background:#111; border:1px solid #00ff88; text-align:center; }
-        
-        /* HIDDEN BY DEFAULT TO BLOCK USERS FROM SEEING ADMIN OR CONVERTER */
-        #authPage { display:none; }
-        #converterPage { display:none; }
-        #filePage { display:none; margin-top:20px; padding:0 15px; }
+        :root {
+            --bg: #09090b;
+            --card-bg: #121216;
+            --input-bg: #18181b;
+            --accent: #a855f7;
+            --accent-hover: #9333ea;
+            --accent-glow: rgba(168, 85, 247, 0.4);
+            --border: #27272a;
+            --text: #f3f4f6;
+            --text-muted: #a1a1aa;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: 'Courier New', Courier, monospace, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px 15px;
+            text-align: center;
+        }
+
+        .logo {
+            color: var(--accent);
+            font-weight: bold;
+            font-size: 13px;
+            line-height: 1.3;
+            white-space: pre-wrap;
+            font-family: monospace;
+            margin: 10px auto 20px auto;
+            overflow-x: auto;
+            max-width: 100%;
+            text-shadow: 0 0 10px var(--accent-glow);
+        }
+
+        .app-title {
+            color: var(--accent);
+            font-size: 18px;
+            font-weight: bold;
+            margin: 10px 0 5px 0;
+            text-shadow: 0 0 14px var(--accent-glow);
+            word-break: break-word;
+            letter-spacing: 1px;
+        }
+
+        h2 {
+            margin: 15px 0;
+            font-size: 16px;
+            color: var(--text);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .box {
+            background: var(--card-bg);
+            border: 1px solid var(--accent);
+            border-radius: 12px;
+            padding: 24px;
+            max-width: 420px;
+            width: 100%;
+            margin: 15px auto;
+            box-shadow: 0 0 25px var(--accent-glow);
+        }
+
+        .banner-container {
+            border: 1px dashed var(--accent);
+            padding: 10px;
+            border-radius: 10px;
+            margin: 15px auto;
+            max-width: 420px;
+            width: 100%;
+            min-height: 60px;
+            text-align: center;
+            background: var(--card-bg);
+            box-shadow: 0 0 12px rgba(168, 85, 247, 0.2);
+        }
+
+        input {
+            width: 100%;
+            padding: 14px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            background: var(--input-bg);
+            color: #fff;
+            font-size: 14px;
+            outline: none;
+            margin-bottom: 14px;
+            font-family: monospace;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        input:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 10px var(--accent-glow);
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            margin-top: 10px;
+            background: var(--accent);
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 15px;
+            cursor: pointer;
+            color: #000;
+            letter-spacing: 1px;
+            transition: background 0.2s, box-shadow 0.2s;
+            box-shadow: 0 0 12px var(--accent-glow);
+        }
+
+        button:hover {
+            background: var(--accent-hover);
+            box-shadow: 0 0 18px var(--accent-glow);
+        }
+
+        .whatsapp-btn {
+            background: #25d366 !important;
+            color: #fff !important;
+            box-shadow: 0 0 12px rgba(37, 211, 102, 0.4) !important;
+        }
+
+        .whatsapp-btn:hover {
+            background: #20ba5a !important;
+            box-shadow: 0 0 18px rgba(37, 211, 102, 0.6) !important;
+        }
+
+        #result {
+            margin-top: 20px;
+            word-break: break-all;
+            display: none;
+        }
+
+        #result input {
+            color: var(--accent);
+            background: #000;
+            border: 1px solid var(--accent);
+            text-align: center;
+            font-weight: bold;
+        }
+
+        #authPage, #converterPage, #filePage {
+            display: none;
+            width: 100%;
+            max-width: 450px;
+        }
+
+        #count {
+            color: var(--accent);
+            font-size: 56px;
+            font-weight: bold;
+            margin: 15px 0;
+            text-shadow: 0 0 18px var(--accent-glow);
+        }
+
+        p {
+            color: var(--text-muted);
+            font-size: 14px;
+        }
     </style>
 </head>
 <body>
 
-    <!-- PASSWORD GATE SCREEN (Admin Login - Only visible on clean base URL) -->
+    <!-- PASSWORD GATE SCREEN (Admin Login) -->
     <div id="authPage">
-        <div class="app-title">🪀⸸ M͛K͛﹏C͛O͛N͛V͛E͛R͛T͛E͛R͛ ⸸©️</div>
-        <pre class="logo"> 🇧🇱 ⸸ M͛K͛﹏C͛O͛N͛V͛E͛R͛T͛E͛R͛ ⸸🇧🇱 </pre>
+        <div class="app-title">♆ 𝐕𝐄𝐍𝐎𝐌么𝟗𝟗𝟗 𝐃𝐎𝐖𝐍𝐋𝐎𝐀𝐃 𝐇𝐔𝐁</div>
+        <pre class="logo">
+  ♆ 𝖛𝖊𝖓𝖔𝖒 𝖍𝖚𝖇 ♆
+  [ ADMIN GATEWAY ]
+        </pre>
         <h2>Admin Access Required</h2>
         <div class="box">
             <input type="password" id="adminPass" placeholder="ENTER PASSWORD">
             <button onclick="checkPassword()">LOGIN</button>
-            <p id="passError" style="color:#ff4444; font-size:14px; display:none; margin-top:10px;">Incorrect password!</p>
+            <p id="passError" style="color:#ef4444; font-size:14px; display:none; margin-top:12px; font-weight:bold;">Incorrect password!</p>
         </div>
     </div>
 
-    <!-- MAIN CONVERTER SCREEN (100% Ad-Free for Admin Only) -->
+    <!-- MAIN CONVERTER SCREEN -->
     <div id="converterPage">
-        <div class="app-title">🪀⸸ M͛K͛﹏C͛O͛N͛V͛E͛R͛T͛E͛R͛ ⸸©️</div>
-        <pre class="logo"> 🇧🇱 ⸸ M͛K͛﹏C͛O͛N͛V͛E͛R͛T͛E͛R͛ ⸸🇧🇱</pre>
+        <div class="app-title">♆ 𝐕𝐄𝐍𝐎𝐌么𝟗𝟗𝟗 𝐃𝐎𝐖𝐍𝐋𝐎𝐀𝐃 𝐇𝐔𝐁</div>
+        <pre class="logo">
+  ♆ 𝖛𝖊𝖓𝖔𝖒 𝖍𝖚𝖇 ♆
+  [ LINK MONETIZER ]
+        </pre>
         <h2>Paste Mediafire File Link</h2>
         <div class="box">
             <input type="text" id="mediaLink" placeholder="https://www.mediafire.com/file/...">
@@ -52,27 +212,33 @@
         </div>
     </div>
 
-    <!-- FILE REDIRECT SCREEN (Ads injected ONLY here for end-users) -->
+    <!-- FILE REDIRECT SCREEN -->
     <div id="filePage">
-        <div class="app-title">🪀⸸ M͛K͛﹏C͛O͛N͛V͛E͛R͛T͛E͛R͛ ⸸©️</div>
-        <pre class="logo">🇧🇱 ⸸ M͛K͛﹏C͛O͛N͛V͛E͛R͛T͛E͛R͛ ⸸🇧🇱</pre>
+        <div class="app-title">♆ 𝐕𝐄𝐍𝐎𝐌么𝟗𝟗𝟗 𝐃𝐎𝐖𝐍𝐋𝐎𝐀𝐃 𝐇𝐔𝐁</div>
+        <pre class="logo">
+  ♆ 𝖛𝖊𝖓𝖔𝖒 𝖍𝖚𝖇 ♆
+  [ SECURE DOWNLOAD ]
+        </pre>
         
         <!-- BANNER AD DISPLAY AREA -->
         <div class="banner-container" id="bannerTarget"></div>
 
-        <h2 style="color:#00ff88">Your File Is Ready!</h2>
+        <h2 style="color:var(--accent)">Your File Is Ready!</h2>
         <p>Click below to continue to your file</p>
-        <p style="font-size:14px; color:#aaa;">Please support us by viewing the ads</p>
-        <h1 id="count" style="color:#00ff88; font-size:50px;">5</h1>
-        <button id="goBtn" style="display:none; background:#00ff88; padding:18px; font-size:18px; color:#000;" onclick="goToFile()">CONTINUE TO FILE ⬇️</button>
+        <p style="font-size:13px; color:var(--text-muted); margin-top: 4px;">Please support us by viewing the ads</p>
+        <div id="count">5</div>
+        <button id="goBtn" style="display:none; padding:16px; font-size:16px;" onclick="goToFile()">CONTINUE TO FILE ⬇️</button>
         <p id="adText">Ads loading... Please wait...</p>
+
+        <!-- PRIVATE PLUGS WHATSAPP BUTTON -->
+        <button class="whatsapp-btn" onclick="goToPrivatePlugs()" style="margin-top: 15px;">💬 TO PRIVATE PLUGS CLICK</button>
     </div>
 
 <script>
 let finalFile = "";
 const correctPassword = "0734548144";
 
-// INSTANT ROUTER CHECK & AD INJECTOR (Blocks ads from ever loading in admin/converter)
+// INSTANT ROUTER CHECK & AD INJECTOR
 (function() {
     const urlParams = new URLSearchParams(window.location.search);
     let fileParam = urlParams.get('file');
@@ -138,9 +304,9 @@ function convertLink() {
     let resDiv = document.getElementById('result');
     resDiv.style.display = 'block';
     resDiv.innerHTML = `
-        <p><b>Your Monetized Link:</b></p>
+        <p style="color:var(--text); font-weight:bold; margin-bottom: 8px;">Your Monetized Link:</p>
         <input type="text" id="moneyLinkInput" value="${generatedUrl}" readonly>
-        <button onclick="copyMoneyLink()" style="background:#00ff88; color:#000; font-weight:bold;">📋 COPY MONEY LINK</button>
+        <button onclick="copyMoneyLink()">📋 COPY MONEY LINK</button>
     `;
 }
 
@@ -172,6 +338,11 @@ function startCountdown() {
 
 function goToFile() {
     window.location.href = finalFile;
+}
+
+function goToPrivatePlugs() {
+    const waUrl = "https://wa.me/27792660597?text=%F0%9D%90%87%F0%9D%90%88%20%E2%99%86%20%F0%9D%90%95%F0%9D%90%84%F0%9D%90%8D%F0%9D%90%8E%F0%9D%90%8C%E4%B9%88%F0%9D%9F%97%F0%9D%9F%97%F0%9D%9F%97%20%F0%9F%91%8B%2C%20%F0%9D%90%88%20%F0%9D%90%96%F0%9D%90%8E%F0%9D%90%94%F0%9D%90%8B%F0%9D%90%83%20%F0%9D%90%8B%F0%9D%90%88%F0%9D%90%8A%F0%9D%90%84%20%F0%9D%90%93%F0%9D%90%8E%20%F0%9D%90%88%F0%9D%90%8D%F0%9D%90%90%F0%9D%90%94%F0%9D%90%88%F0%9D%90%91%F0%9D%90%80%F0%9D%90%81%F0%9D%90%8E%F0%9D%90%94%F0%9D%90%93%2C%20%F0%9D%90%93%F0%9D%90%87%F0%9D%90%84%20%F0%9F%9F%A1%20%F0%9D%90%8C%F0%9D%90%93%F0%9D%90%8D%20%F0%9D%90%97%20%F0%9F%94%B5%20%F0%9D%90%93%F0%9D%90%84%F0%9D%90%8B%F0%9D%90%8A%F0%9D%90%8E%F0%9D%90%8C%20%F0%9D%90%94%F0%9D%90%8D%F0%9D%90%8B%F0%9D%90%88%F0%9D%90%8C%F0%9D%90%88%F0%9D%90%93%F0%9D%90%84%F0%9D%90%83%20%F0%9D%90%8F%F0%9D%90%91%F0%9D%90%88%F0%9D%90%95%F0%9D%90%80%F0%9D%90%93%F0%9D%90%84%20%F0%9D%90%8F%F0%9D%90%94%F0%9D%90%86%F0%9D%90%92%20%F0%9F%93%B6%F0%9F%9A%80.%20%F0%9D%90%88%F0%9D%90%92%20%F0%9D%90%88%F0%9D%90%93%20%F0%9D%90%92%F0%9D%90%93%F0%9D%90%88%F0%9D%90%8B%F0%9D%90%8B%20%F0%9D%90%80%F0%9D%90%95%F0%9D%90%80%F0%9D%90%88%F0%9D%90%8B%F0%9D%90%80%F0%9D%90%81%F0%9D%90%8B%F0%9D%90%84%3F%20%F0%9F%87%BF%F0%9F%87%A6";
+    window.open(waUrl, '_blank');
 }
 </script>
 </body>
