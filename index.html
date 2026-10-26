@@ -23,6 +23,8 @@
             --whatsapp-glow: rgba(37, 211, 102, 0.5);
             --fb-blue: #1877f2;
             --fb-glow: rgba(24, 119, 242, 0.5);
+            --face-blue: #00e5ff;
+            --face-glow: rgba(0, 229, 255, 0.6);
         }
 
         * {
@@ -145,6 +147,19 @@
         button:hover {
             background: var(--accent-hover);
             box-shadow: 0 0 25px var(--accent-glow);
+        }
+
+        .face-btn {
+            background: transparent !important;
+            border: 1px solid var(--face-blue) !important;
+            color: var(--face-blue) !important;
+            box-shadow: 0 0 12px var(--face-glow) !important;
+            margin-top: 15px;
+        }
+
+        .face-btn:hover {
+            background: rgba(0, 229, 255, 0.15) !important;
+            box-shadow: 0 0 20px var(--face-glow) !important;
         }
 
         /* ONE UI 7 STYLE GRID PANEL */
@@ -318,13 +333,14 @@
     <div id="authPage">
         <div class="app-title">♆ 𝐕𝐄𝐍𝐎𝐌么𝟗𝟗𝟗 𝐃𝐎𝐖𝐍𝐋𝐎𝐀𝐃 𝐇𝐔𝐁</div>
         <pre class="logo">
-  ♆ 𝖛𝖊𝖓𝖔𝖒 𝖍𝖚𝖇 ♆
+  ♆ 𝖛𝖊𝖓𝖔𝖒 𝖍𝖚𝟇 ♆
   [ ADMIN GATEWAY ]
         </pre>
         <h2>Admin Access Required</h2>
         <div class="box">
             <input type="password" id="adminPass" placeholder="ENTER PASSWORD">
             <button onclick="checkPassword()">LOGIN</button>
+            <button class="face-btn" onclick="authenticateBiometrics()">RECOVER VIA FACE ID 👤</button>
             <p id="passError" style="color:#ff4d4d; font-size:14px; display:none; margin-top:12px; font-weight:bold; text-shadow: 0 0 10px rgba(255,77,77,0.6);">Incorrect password!</p>
         </div>
 
@@ -340,7 +356,7 @@
     <div id="converterPage">
         <div class="app-title">♆ 𝐕𝐄𝐍𝐎𝐌么𝟗𝟗𝟗 𝐃𝐎𝐖𝐍𝐋𝐎𝐀𝐃 𝐇𝐔𝐁</div>
         <pre class="logo">
-  ♆ 𝖛𝖊𝖓𝖔𝖒 𝖍𝖚𝖇 ♆
+  ♆ 𝖛𝖊𝖓𝖔𝖒 𝖍𝖚𝟇 ♆
   [ LINK MONETIZER & DASHBOARD ]
         </pre>
         
@@ -349,6 +365,7 @@
             <input type="text" id="mediaLink" placeholder="https://www.mediafire.com/file/...">
             <button onclick="convertLink()">CONVERT TO MONEY LINK 💰</button>
             <div id="result"></div>
+            <button class="face-btn" id="registerBioBtn" onclick="registerBiometrics()" style="margin-top:15px;">🔗 REGISTER DEVICE FACE ID FOR RECOVERY</button>
         </div>
 
         <!-- REAL-TIME DASHBOARD -->
@@ -374,7 +391,7 @@
         <div class="venom-footer">
             <h3 style="font-size: 14px; color: #8b00ff; text-shadow: 0 0 8px rgba(139,0,255,0.6);">𝑐𝑜𝑚𝑝𝑖𝑙𝑒𝑑 𝐵𝑌: ♆ 𝐕𝐄𝐍𝐎𝐌么𝟗𝟗𝟗</h3>
             <div style="margin-top:6px; font-size: 13px;"><font color="#00aaff">2026 | ♆𝐕𝐄𝐍𝐎𝐌么𝟗𝟗𝟗 .INC ©°</font></div>
-            <div style="margin-top:6px; font-size: 15px; font-weight: bold;"><font color="#ff5500">© </font><font color="#ff7f00">𝐏</font><font color="#ffd400">𝐎</font><font color="#ffd400">𝐖</font><font color="#ffff00">𝐖</font><font color="#aaff00">𝐄</font><font color="#00ff00">𝐑</font><font color="#00ffaa">𝐄</font><font color="#00ffff">𝐃 </font><font color="#00aaff">𝐁</font><font color="#0055ff">𝐘 </font><font color="#5d00ff">♆</font><font color="#8b00ff">𝐕</font><font color="#b200aa">𝐄</font><font color="#d80055">𝐍</font><font color="#ff0000">𝐎</font><font color="#ff2a00">𝐌</font><font color="#ff5500">么</font><font color="#ff7f00">𝟗</font><font color="#ffd400">𝟗</font><font color="#ffff00">𝟗</font></div>
+            <div style="margin-top:6px; font-size: 15px; font-weight: bold;"><font color="#ff5500">© </font><font color="#ff7f00">𝐏</font><font color="#ffd400">𝐎</font><font color="#ffff00">𝐖</font><font color="#aaff00">𝐄</font><font color="#00ff00">𝐑</font><font color="#00ffaa">𝐄</font><font color="#00ffff">𝐃 </font><font color="#00aaff">𝐁</font><font color="#0055ff">𝐘 </font><font color="#5d00ff">♆</font><font color="#8b00ff">𝐕</font><font color="#b200aa">𝐄</font><font color="#d80055">𝐍</font><font color="#ff0000">𝐎</font><font color="#ff2a00">𝐌</font><font color="#ff5500">么</font><font color="#ff7f00">𝟗</font><font color="#ffd400">𝟗</font><font color="#ffff00">𝟗</font></div>
         </div>
     </div>
 
@@ -382,7 +399,7 @@
     <div id="filePage">
         <div class="app-title">♆ 𝐕𝐄𝐍𝐎𝐌么𝟗𝟗𝟗 𝐃𝐎𝐖𝐍𝐋𝐎𝐀𝐃 𝐇𝐔𝐁</div>
         <pre class="logo">
-  ♆ 𝖛𝖊𝖓𝖔𝖒 𝖍𝖚𝖇 ♆
+  ♆ 𝖛𝖊𝖓𝖔𝖒 𝖍𝖚𝟇 ♆
   [ SECURE DOWNLOAD ]
         </pre>
         
@@ -444,17 +461,12 @@ const correctPassword = "0734548144";
             finalFile = decodeURIComponent(atob(fileParam));
             document.getElementById('filePage').style.display = 'block';
             
-            // TRACK DOWNLOAD HIT
-            trackDownloadEvent();
-
-            // INJECT ONE-CLICK AD SCRIPT ONLY ON FILE PAGE
             let oneClickScript = document.createElement('script');
             oneClickScript.src = "https://al5sm.com/tag.min.js?z=11927839";
             oneClickScript.setAttribute('data-cfasync', 'false');
             oneClickScript.async = true;
             document.head.appendChild(oneClickScript);
 
-            // INJECT BANNER SCRIPT ONLY INTO BANNER CONTAINER ON FILE PAGE
             let bannerScript = document.createElement('script');
             bannerScript.src = "https://5gvci.com/act/files/tag.min.js?z=11927840";
             bannerScript.setAttribute('data-cfasync', 'false');
@@ -487,6 +499,64 @@ function checkPassword() {
     }
 }
 
+async function registerBiometrics() {
+    if (!window.PublicKeyCredential) {
+        alert("WebAuthn biometric locking is not supported on this browser.");
+        return;
+    }
+    try {
+        const challenge = new Uint8Array(32);
+        window.crypto.getRandomValues(challenge);
+        const publicKey = {
+            challenge: challenge,
+            rp: { name: "Venom Download Hub" },
+            user: {
+                id: Uint8Array.from("venom_admin", c => c.charCodeAt(0)),
+                name: "admin@venomhub",
+                displayName: "Venom Admin"
+            },
+            pubKeyCredParams: [{ alg: -7, type: "public-key" }],
+            authenticatorSelection: { authenticatorAttachment: "platform", userVerification: "required" },
+            timeout: 60000
+        };
+        await navigator.credentials.create({ publicKey });
+        localStorage.setItem("venom_biometric_registered", "true");
+        alert("Device Biometric / Face ID successfully linked for recovery! 🔓");
+    } catch (err) {
+        console.error(err);
+        alert("Biometric registration cancelled or failed.");
+    }
+}
+
+async function authenticateBiometrics() {
+    if (localStorage.getItem("venom_biometric_registered") !== "true") {
+        alert("Please log in with your password at least once and link your Face ID inside the dashboard first!");
+        return;
+    }
+    if (!window.PublicKeyCredential) {
+        alert("WebAuthn is not supported on this browser.");
+        return;
+    }
+    try {
+        const challenge = new Uint8Array(32);
+        window.crypto.getRandomValues(challenge);
+        const publicKey = {
+            challenge: challenge,
+            timeout: 60000,
+            userVerification: "required"
+        };
+        await navigator.credentials.get({ publicKey });
+        
+        // Success! Bypass password gate
+        document.getElementById('authPage').style.display = 'none';
+        document.getElementById('converterPage').style.display = 'block';
+        loadDashboardStats();
+    } catch (err) {
+        console.error(err);
+        alert("Face ID verification failed or cancelled.");
+    }
+}
+
 function convertLink() {
     let inputLink = document.getElementById('mediaLink').value.trim();
     
@@ -510,7 +580,6 @@ function convertLink() {
         <button onclick="copyMoneyLink()">📋 COPY MONEY LINK</button>
     `;
 
-    // TRACK CONVERSION LOG
     let conversions = parseInt(localStorage.getItem('total_conversions') || '0') + 1;
     localStorage.setItem('total_conversions', conversions);
     addLog(`New money link converted at ${new Date().toLocaleTimeString()}`);
@@ -544,11 +613,12 @@ function startCountdown() {
 }
 
 function goToFile() {
+    trackDownloadEvent();
     window.location.href = finalFile;
 }
 
 function goToPrivatePlugs() {
-    const waUrl = "https://wa.me/27792660597?text=%F0%9D%90%87%F0%9D%90%88%20%E2%99%86%20%F0%9D%90%95%F0%9D%90%84%F0%9D%90%8D%F0%9D%90%8E%F0%9D%90%8C%E4%B9%88%F0%9D%9F%97%F0%9D%9F%97%F0%9D%9F%97%20%F0%9F%91%8B%2C%20%F0%9D%90%88%20%F0%9D%90%96%F0%9D%90%8E%F0%9D%90%94%F0%9D%90%8B%F0%9D%90%83%20%F0%9D%90%8B%F0%9D%90%88%F0%9D%90%8A%F0%9D%90%84%20%F0%9D%90%93%F0%9D%90%8E%20%F0%9D%90%88%F0%9D%90%8D%F0%9D%90%90%F0%9D%90%94%F0%9D%90%88%F0%9D%90%91%F0%9D%90%80%F0%9D%90%81%F0%9D%90%8E%F0%9D%90%94%F0%9D%90%93%2C%20%F0%9D%90%93%F0%9D%90%87%F0%9D%90%84%20%F0%9F%9F%A1%20%F0%9D%90%8C%F0%9D%90%93%F0%9D%90%8D%20%F0%9D%90%97%20%F0%9F%94%B5%20%F0%9D%90%93%F0%9D%90%84%F0%9D%90%8B%F0%9D%90%8A%F0%9D%90%8E%F0%9D%90%8C%20%F0%9D%90%94%F0%9D%90%8D%F0%9D%90%8B%F0%9D%90%88%F0%9D%90%8C%F0%9D%90%88%F0%9D%90%93%F0%9D%90%84%F0%9D%90%83%20%F0%9D%90%8F%F0%9D%90%91%F0%9D%90%88%F0%9D%90%95%F0%9D%90%80%F0%9D%90%93%F0%9D%90%84%20%F0%9D%90%8F%F0%9D%90%94%F0%9D%90%86%F0%9D%90%92%20%F0%9F%93%B6%F0%9F%9A%80.%20%F0%9D%90%88%F0%9D%90%92%20%F0%9D%90%88%F0%9D%90%93%20%F0%9D%90%92%F0%9D%90%93%F0%9D%90%88%F0%9D%90%8B%F0%9D%90%8B%20%F0%9D%90%80%F0%9D%90%95%F0%9D%90%80%F0%9D%90%88%F0%9D%90%8B%F0%9D%90%80%F0%9D%90%81%F0%9D%90%8B%F0%9D%90%84%3F%20%F0%9F%87%BF%F0%9F%87%A6";
+    const waUrl = "https://wa.me/27792660597?text=%F0%9D%90%87%F0%9D%90%88%20%E2%99%86%20%F0%9D%90%95%F0%9D%90%84%F0%9D%90%8D%F0%9D%90%8E%F0%9D%90%8C%E4%B9%88%F0%9D%9F%97%F0%9D%9F%97%F0%9D%9F%97%20%F0%9F%91%8B%2C%20%F0%9D%90%88%20%F0%9D%90%96%F0%9D%90%8E%F0%9D%90%94%F0%9D%90%8B%F0%9D%90%83%20%F0%9D%90%8B%F0%9D%90%88%F0%9D%90%8A%F0%9D%90%84%20%F0%9D%90%93%F0%9D%90%8E%20%F0%9D%90%88%F0%9D%90%8D%F0%9D%90%90%F0%9D%90%88%F0%9D%90%91%F0%9D%90%80%F0%9D%90%81%F0%9D%90%8E%F0%9D%90%94%F0%9D%90%93%2C%20%F0%9D%90%93%F0%9D%90%87%F0%9D%90%84%20%F0%9F%9F%A1%20%F0%9D%90%8C%F0%9D%90%93%F0%9D%90%8D%20%F0%9D%90%97%20%F0%9F%94%B5%20%F0%9D%90%93%F0%9D%90%84%F0%9D%90%8B%F0%9D%90%8A%F0%9D%90%8E%F0%9D%90%8C%20%F0%9D%90%94%F0%9D%90%8D%F0%9D%90%8B%F0%9D%90%88%F0%9D%90%8C%F0%9D%90%88%F0%9D%90%93%F0%9D%90%84%F0%9D%90%83%20%F0%9D%90%8F%F0%9D%90%91%F0%9D%90%88%F0%9D%90%95%F0%9D%90%80%F0%9D%90%93%F0%9D%90%84%20%F0%9D%90%8F%F0%9D%90%94%F0%9D%90%86%F0%9D%90%92%20%F0%9F%93%B6%F0%9F%9A%80.%20%F0%9D%90%88%F0%9D%90%92%20%F0%9D%90%88%F0%9D%90%93%20%F0%9D%90%92%F0%9D%90%93%F0%9D%90%88%F0%9D%90%8B%F0%9D%90%8B%20%F0%9D%90%80%F0%9D%90%95%F0%9D%90%80%F0%9D%90%88%F0%9D%90%8B%F0%9D%90%80%F0%9D%90%81%F0%9D%90%8B%F0%9D%90%84%3F%20%F0%9F%87%BF%F0%9F%87%A6";
     window.open(waUrl, '_blank');
 }
 
@@ -577,7 +647,7 @@ function trackDownloadEvent() {
 
     downloadsToday++;
     localStorage.setItem('downloads_today', downloadsToday);
-    addLog(`User opened download page at ${new Date().toLocaleTimeString()}`);
+    addLog(`User completed download click at ${new Date().toLocaleTimeString()}`);
 }
 
 function addLog(message) {
