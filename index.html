@@ -11,11 +11,11 @@
     <style>
         :root {
             --bg: #050505;
-            --card-bg: rgba(12, 8, 8, 0.88);
-            --input-bg: #120808;
+            --card-bg: rgba(12, 6, 6, 0.88);
+            --input-bg: #120505;
             --accent: #ff1a1a;          /* Intense Neon Red */
             --accent-hover: #cc0000;    /* Darker Red Hover */
-            --accent-glow: rgba(255, 26, 26, 0.65);
+            --accent-glow: rgba(255, 26, 26, 0.75);
             --border: #520c0c;
             --text: #fee2e2;
             --text-muted: #fca5a5;
@@ -33,8 +33,8 @@
 
         body {
             background-color: var(--bg);
-            background-image: linear-gradient(rgba(5, 5, 5, 0.82), rgba(5, 5, 5, 0.94)), 
-                              radial-gradient(circle at center, #2a0808 0%, #050505 100%);
+            /* USES YOUR background.jpg FILE DIRECTLY */
+            background-image: linear-gradient(rgba(5, 5, 5, 0.78), rgba(5, 5, 5, 0.88)), url('background.jpg');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
@@ -99,14 +99,14 @@
 
         .box {
             background: var(--card-bg);
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(12px);
             border: 1px solid var(--accent);
             border-radius: 14px;
             padding: 24px;
             max-width: 500px;
             width: 100%;
             margin: 15px auto;
-            box-shadow: 0 0 30px var(--accent-glow), inset 0 0 15px rgba(255, 26, 26, 0.15);
+            box-shadow: 0 0 30px var(--accent-glow), inset 0 0 15px rgba(255, 26, 26, 0.2);
         }
 
         .banner-container {
@@ -119,8 +119,8 @@
             min-height: 60px;
             text-align: center;
             background: var(--card-bg);
-            backdrop-filter: blur(6px);
-            box-shadow: 0 0 18px rgba(255, 26, 26, 0.3);
+            backdrop-filter: blur(8px);
+            box-shadow: 0 0 20px rgba(255, 26, 26, 0.35);
         }
 
         input {
@@ -213,7 +213,7 @@
             font-size: clamp(40px, 8vw, 64px);
             font-weight: bold;
             margin: 15px 0;
-            text-shadow: 0 0 25px var(--accent-glow), 0 0 40px var(--accent-glow);
+            text-shadow: 0 0 25px var(--accent-glow), 0 0 45px var(--accent-glow);
         }
 
         p {
@@ -279,7 +279,7 @@
 
     <!-- PASSWORD GATE SCREEN (Admin Login) -->
     <div id="authPage">
-        <div class="app-title">♆ 𝐕𝐄𝐍??𝐌么𝟗𝟗𝟗 𝐃𝐎𝐖𝐍𝐋𝐎𝐀𝐃 𝐇𝐔𝐁</div>
+        <div class="app-title">♆ 𝐕𝐄𝐍𝐎𝐌么𝟗𝟗𝟗 ??𝐎𝐖𝐍𝐋𝐎𝐀𝐃 𝐇𝐔𝐁</div>
         <pre class="logo">
   ♆ 𝖛𝖊𝖓𝖔𝖒 𝖍𝖚𝖇 ♆
   [ ADMIN GATEWAY ]
@@ -479,7 +479,7 @@ function goToFile() {
 }
 
 function goToPrivatePlugs() {
-    const waUrl = "https://wa.me/27792660597?text=%F0%9D%90%87%F0%9D%90%88%20%E2%99%86%20%F0%9D%90%95%F0%9D%90%84%F0%9D%90%8D%F0%9D%90%8E%F0%9D%90%8C%E4%B9%88%F0%9D%9F%97%F0%9D%9F%97%F0%9D%9F%97%20%F0%9F%91%8B%2C%20%F0%9D%90%88%20%F0%9D%90%96%F0%9D%90%8E%F0%9D%90%94%F0%9D%90%8B%F0%9D%90%83%20%F0%9D%90%8B%F0%9D%90%88%F0%9D%90%8A%F0%9D%90%84%20%F0%9D%90%93%F0%9D%90%8E%20%F0%9D%90%88%F0%9D%90%8D%F0%9D%90%90%F0%9D%90%94%F0%9D%90%88%F0%9D%90%91%F0%9D%90%80%F0%9D%90%81%F0%9D%90%8E%F0%9D%90%94%F0%9D%90%93%2C%20%F0%9D%90%93%F0%9D%90%87%F0%9D%90%84%20%F0%9F%9F%A1%20%F0%9D%90%8C%F0%9D%90%93%F0%9D%90%8D%20%F0%9D%90%97%20%F0%9F%94%B5%20%F0%9D%90%93%F0%9D%90%84%F0%9D%90%8B%F0%9D%90%8A%F0%9D%90%8E%F0%9D%90%8C%20%F0%9D%90%94%F0%9D%90%8D%F0%9D%90%8B%F0%9D%90%88%F0%9D%90%8C%F0%9D%90%88%F0%9D%90%93%F0%9D%90%84%F0%9D%90%83%20%F0%9D%90%8F%F0%9D%90%91%F0%9D%90%88%F0%9D%90%95%F0%9D%90%80%F0%9D%90%93%F0%9D%90%84%20%F0%9D%90%8F%F0%9D%90%94%F0%9D%90%86%F0%9D%90%92%20%F0%9F%93%B6%F0%9F%9A%80.%20%F0%9D%90%88%F0%9D%90%92%20%F0%9D%90%88%F0%9D%90%93%20%F0%9D%90%92%F0%9D%90%93%F0%9D%90%88%F0%9D%90%8B%F0%9D%90%8B%20%F0%9D%90%80%F0%9D%90%95%F0%9D%90%80%F0%9D%90%88%F0%9D%90%8B%F0%9D%90%80%F0%9D%90%81%F0%9D%90%8B%F0%9D%90%84%3F%20%F0%9F%87%BF%F0%9F%87%A6";
+    const waUrl = "https://wa.me/27792660597?text=%F0%9D%90%87%F0%9D%90%88%20%E2%99%86%20%F0%9D%90%95%F0%9D%90%84%F0%9D%90%8D%F0%9D%90%8E%F0%9D%90%8C%E4%B9%88%F0%9D%9F%97%F0%9D%9F%97%F0%9D%9F%97%20%F0%9F%91%8B%2C%20%F0%9D%90%88%20%F0%9D%90%96%F0%9D%90%8E%F0%9D%90%94%F0%9D%90%8B%F0%9D%90%83%20%F0%9D%90%8B%F0%9D%90%88%F0%9D%90%8A%F0%9D%90%84%20%F0%9D%90%93%F0%9D%90%8E%20%F0%9D%90%88%F0%9D%90%8D%F0%9D%90%90%F0%9D%90%94%F0%9D%90%88%F0%9D%90%91%F0%9D%90%80%F0%9D%90%81%F0%9D%90%8E%F0%9D%90%94%F0%9D%90%93%2C%20%F0%9D%90%93%F0%9D%90%87%F0%9D%90%84%20%F0%9F%9F%A1%20%F0%9D%90%8C%F0%9D%90%93%F0%9D%90%8D%20%F0%9D%90%97%20%F0%9F%94%B5%20%F0%9D%90%93%F0%9D%90%84%F0%9D%90%8B%F0%9D%90%8A%F0%9D%90%8E%F0%9D%90%8C%20%F0%9D%90%94%F0%9D%90%8D%F0%9D%90%8B%F0%9D%90%88%F0%9D%90%8C%F0%9D%90%88%F0%9D%90%93%F0%9D%90%84%F0%9D%90%83%20%F0%9D%90%8F%F0%9D%90%91%F0%9D%90%88%F0%9D%90%95%F0%9D%90%80%F0%9D%90%93%F0%9D%90%84%20%F0%9D%90%8F%F0%9D%90%94%F0%9D%90%86%F0%9D%90%92%20%F0%9F%93%B6%F0%9F%9A%80.%20%F0%9D%90%88%F0%9D%90%92%20%F0%9D%90%88%F0%9D%90%93%F0%9D%90%92%F0%9D%90%88%F0%9D%90%8B%F0%9D%90%8B%20%F0%9D%90%80%F0%9D%90%95%F0%9D%90%80%F0%9D%90%88%F0%9D%90%8B%F0%9D%90%80%F0%9D%90%81%F0%9D%90%8B%F0%9D%90%84%3F%20%F0%9F%87%BF%F0%9F%87%A6";
     window.open(waUrl, '_blank');
 }
 
@@ -535,4 +535,3 @@ function loadDashboardStats() {
 </script>
 </body>
 </html>
-
