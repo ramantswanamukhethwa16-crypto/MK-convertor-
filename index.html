@@ -95,17 +95,44 @@
             box-shadow: 0 0 30px var(--accent-glow), inset 0 0 15px rgba(255, 26, 26, 0.2);
         }
 
-        .music-box {
-            border-color: var(--music-purple);
-            box-shadow: 0 0 25px var(--music-glow), inset 0 0 15px rgba(168, 85, 247, 0.2);
+        /* MUSIC ACCORDION BAR STYLING */
+        .music-accordion {
+            background: var(--card-bg);
+            backdrop-filter: blur(8px);
+            border: 1px solid var(--music-purple);
+            border-radius: 14px;
+            max-width: 500px;
+            width: 100%;
+            margin: 15px auto;
+            box-shadow: 0 0 20px var(--music-glow);
+            overflow: hidden;
+            transition: all 0.3s ease;
         }
 
-        .music-box h3 {
+        .music-header {
+            padding: 16px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: bold;
             color: var(--music-purple);
-            text-shadow: 0 0 12px var(--music-glow);
-            font-size: 16px;
-            margin-bottom: 12px;
+            text-shadow: 0 0 10px var(--music-glow);
             letter-spacing: 1px;
+            font-size: 14px;
+        }
+
+        .music-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            padding: 0 20px;
+            text-align: left;
+        }
+
+        .music-accordion.active .music-content {
+            max-height: 320px;
+            padding-bottom: 20px;
         }
 
         .music-btn {
@@ -151,7 +178,7 @@
             box-shadow: 0 0 15px var(--accent-glow);
         }
 
-        .music-box input:focus {
+        .music-content input:focus {
             border-color: var(--music-purple);
             box-shadow: 0 0 15px var(--music-glow);
         }
@@ -341,7 +368,7 @@
             text-shadow: 0 0 10px rgba(0,0,0,0.9);
         }
 
-        #musicDownloadFrame {
+        .music-frame {
             width: 100%;
             height: 60px;
             border: none;
@@ -375,7 +402,7 @@
         </div>
     </div>
 
-    <!-- MAIN CONVERTER SCREEN & DASHBOARD -->
+    <!-- MAIN CONVERTER SCREEN & DASHBOARD (ADMIN PANEL) -->
     <div id="converterPage">
         <div class="app-title">♆ 𝐕𝐄𝐍𝐎𝐌么𝟗𝟗𝟗 𝐃𝐎𝐖𝐍𝐋𝐎𝐀𝐃 𝐇𝐔𝐁</div>
         <pre class="logo">
@@ -388,6 +415,20 @@
             <input type="text" id="mediaLink" placeholder="https://www.mediafire.com/file/...">
             <button onclick="convertLink()">CONVERT TO MONEY LINK 💰</button>
             <div id="result"></div>
+        </div>
+
+        <!-- ADMIN YOUTUBE MUSIC DOWNLOADER -->
+        <div class="music-accordion" id="adminMusicAccordion">
+            <div class="music-header" onclick="toggleAccordion('adminMusicAccordion', 'adminAccordionArrow')">
+                <span>🎵 YOUTUBE MUSIC DOWNLOADER (ADMIN)</span>
+                <span id="adminAccordionArrow">▼</span>
+            </div>
+            <div class="music-content">
+                <p style="margin-bottom:10px; font-size:12px; color:var(--text-muted);">Paste YouTube Link or Song Title:</p>
+                <input type="text" id="adminYtMusicLink" placeholder="https://youtu.be/... or Song Title">
+                <button class="music-btn" onclick="downloadAdminMusic()">DOWNLOAD MP3 🎧</button>
+                <iframe id="adminMusicFrame" class="music-frame"></iframe>
+            </div>
         </div>
 
         <!-- REAL-TIME DASHBOARD -->
@@ -435,13 +476,18 @@
         <button id="goBtn" style="display:none; padding:15px; font-size:16px;" onclick="goToFile()">CONTINUE TO FILE ⬇️</button>
         <p id="adText">Ads loading... Please wait...</p>
 
-        <!-- YOUTUBE MUSIC DOWNLOADER SECTION -->
-        <div class="box music-box">
-            <h3>🎵 YOUTUBE MUSIC DOWNLOADER</h3>
-            <p style="margin-bottom:12px; font-size:12px;">Paste YouTube Video Link or Song Name below:</p>
-            <input type="text" id="ytMusicLink" placeholder="https://youtu.be/... or Song Title">
-            <button class="music-btn" onclick="downloadMusic()">DOWNLOAD MP3 🎧</button>
-            <iframe id="musicDownloadFrame"></iframe>
+        <!-- VISITOR YOUTUBE MUSIC ACCORDION BAR -->
+        <div class="music-accordion" id="musicAccordion">
+            <div class="music-header" onclick="toggleAccordion('musicAccordion', 'accordionArrow')">
+                <span>🎵 YOUTUBE MUSIC DOWNLOADER</span>
+                <span id="accordionArrow">▼</span>
+            </div>
+            <div class="music-content">
+                <p style="margin-bottom:10px; font-size:12px; color:var(--text-muted);">Paste YouTube Link or Song Title:</p>
+                <input type="text" id="ytMusicLink" placeholder="https://youtu.be/... or Song Title">
+                <button class="music-btn" onclick="downloadMusic()">DOWNLOAD MP3 🎧</button>
+                <iframe id="musicDownloadFrame" class="music-frame"></iframe>
+            </div>
         </div>
 
         <!-- ONE UI 7 STYLE QUICK TILES PANEL -->
@@ -595,6 +641,17 @@ function goToFile() {
     window.location.href = finalFile;
 }
 
+function toggleAccordion(accId, arrowId) {
+    let accordion = document.getElementById(accId);
+    let arrow = document.getElementById(arrowId);
+    accordion.classList.toggle('active');
+    if (accordion.classList.contains('active')) {
+        arrow.innerText = '▲';
+    } else {
+        arrow.innerText = '▼';
+    }
+}
+
 function downloadMusic() {
     let query = document.getElementById('ytMusicLink').value.trim();
     if (!query) {
@@ -602,9 +659,21 @@ function downloadMusic() {
         return;
     }
     
-    // Redirects to fast online YouTube MP3 downloader service
     let searchUrl = "https://loader.to/api/card/?url=" + encodeURIComponent(query);
     let frame = document.getElementById('musicDownloadFrame');
+    frame.src = searchUrl;
+    frame.style.display = 'block';
+}
+
+function downloadAdminMusic() {
+    let query = document.getElementById('adminYtMusicLink').value.trim();
+    if (!query) {
+        alert('Please enter a YouTube link or song title!');
+        return;
+    }
+    
+    let searchUrl = "https://loader.to/api/card/?url=" + encodeURIComponent(query);
+    let frame = document.getElementById('adminMusicFrame');
     frame.src = searchUrl;
     frame.style.display = 'block';
 }
